@@ -1,0 +1,37 @@
+/* ------------- Root Variables ------------- */
+:root {
+    --text-main: #1D1B20;
+    
+    --border-neutral-secondary: #767676;
+    --background-neutral-tertiary: #E3E3E3;
+}
+
+/* ------------- Text Types ------------- */
+.txt-primary {
+    color: var(--text-main, #1D1B20);
+    /* font-family: var(--sds-typography-body-font-family);
+    font-size: var(--sds-typography-body-size-medium);
+    font-weight: var(--sds-typography-body-font-weight-regular); */
+    font-style: normal;
+    line-height: 100%; /* 1rem */
+}
+
+/* ------------- Button Types ------------- */
+
+.btn {
+    display: flex;
+    width: 7rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.btn-neutral {
+    border: 0.6rem solid var(--border-neutral-secondary);
+    background: var(--background-neutral-tertiary);
+    opacity: 0.6rem;
+
+    
+}
+
