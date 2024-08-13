@@ -241,6 +241,22 @@ header > a:hover {
 
 
 /* ------------- The Hero------------- */
+/* 
+<div class="hero">
+    <div class="title-subtitle">
+        <h1>WatchedThem</h1>
+        <p>Leave a review about your favorite movies</p>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-neutral">
+            Reviews
+        </button>
+        <button class="btn btn-primary">
+            New Post
+        </button>
+    </div>
+</div>
+*/
 .hero {
     display: flex;
     height: 85.8lvh;
@@ -294,4 +310,109 @@ header > a:hover {
     width: 15rem;
     align-items: center;
     gap: 2rem;
+}
+
+/* ------------- The Pagination ------------- */
+
+/* 
+REMOVE MAX WIDTH DIV IF YOU PUT THIS IN
+SOMETHING THAT HAS FLEX DIRECTION COLUMN
+
+<div class="pagination-max-width">
+    <div class="pagination-main">
+        <div class="pagination-tail pagination-disabled">
+            Previous
+        </div>
+    
+        <div class="pagination-list">
+            <div class="pagination-page-current">
+                1
+            </div>
+            <div class="pagination-page">
+                2
+            </div>
+            <div class="pagination-page">
+                ...
+            </div>
+            <div class="pagination-page">
+                32
+            </div>
+            <div class="pagination-page">
+                33
+            </div>
+        </div>
+    
+        <div class="pagination-tail">
+            Next
+        </div>
+    </div>
+    
+</div>
+*/
+
+.pagination-max-width {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+
+    padding: 1% 0%;
+
+    width: 100%;
+}
+
+.pagination-main {
+    display: flex;
+    width: 67rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-tail {
+    display: flex;
+    padding: 0.5rem 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.pagination-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-page, .pagination-page-current {
+    display: flex;
+    padding: 0.5rem 0.75rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0.5rem;
+    background: none;
+    color: var(--text-main);
+
+    cursor: pointer;
+}
+
+.pagination-page:hover, .pagination-tail:not(.pagination-disabled):hover {
+    background-color: var(--background-neutral-tertiary);
+}
+
+.pagination-page-current {
+    background: var(--background-primary-default-hover);
+    color: var(--text-white);
+
+    cursor: default;
+}
+
+.pagination-disabled {
+    color: var(--text-subtle);
+
+    cursor: default;
 }
