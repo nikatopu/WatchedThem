@@ -5,8 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- The stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- The typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <!-- Document title -->
     <title>WatchedThem</title>
 </head>
 <body>
 <!-- This is the start of the whole page -->
+
+    <header>
+        <!-- The page icon -->
+        <div class="icon">
+            <img src="icons/icon-eye.png" alt="Eye icon" onclick='location.href="/"'/>
+        </div>
+
+        <!-- The search bar -->
+        <div class="search-holder">
+            <div class="search-layer">
+                <input type="text" class="search-text" placeholder="Search for something...">
+                <div class="search-trailing">
+                    <img src="/icons/icon-search.png">
+                </div>
+            </div>
+        </div>
+
+        <!-- The design and project a links -->
+            <a href="https://www.figma.com/proto/ila11OOtkfCdVOVlhUftQh/WathcedThem?node-id=2-549&t=ZFKhetwKMpvMwFss-1" target="_blank" rel="noopener noreferrer">Design</a>
+            <a href="https://github.com/nikatopu/" target="_blank" rel="noopener noreferrer">Projects</a>
+
+        <!-- Register/Sign in -->
+         <div class="btn-group">
+            <button class="btn btn-neutral btn-thin" onclick='location.href="/login"'>Sign in</button>
+            <button class="btn btn-primary btn-thin" onclick='location.href="/register"'>Register</button>
+         </div>
+
+    </header>
