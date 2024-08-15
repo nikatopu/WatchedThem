@@ -25,10 +25,10 @@
 /* ------------- Text Types ------------- */
 .txt-primary, .txt-secondary, * {
     color: var(--text-main);
-    font-size: 16px;
+    font-size: 1.25lvw;
     font-family: "Inter";
     font-weight: 400;
-    line-height: 16px;
+    line-height: 1.25lvw;
     word-wrap: break-word
 }
 
@@ -40,21 +40,21 @@
 /* General button */
 .btn {
     display: flex;
-    width: 7rem;
+    width: 8.75vw;
     justify-content: center;
     align-items: center;
-    padding: 0.75rem;
-    margin: 1.25rem;
-    border-radius: 0.5rem;
+    padding: 0.938vw;
+    margin: 1.563vw;
+    border-radius: 0.625vw;
     cursor: pointer;
-    border: 0.1rem solid;
-    opacity: 0.6rem;
+    border: 0.125vw solid;
+    opacity: 0.75vw;
 
     /* Text inside a button */
-    font-size: 16px;
+    font-size: 1.25lvw;
     font-family: "Inter";
     font-weight: 400;
-    line-height: 16px;
+    line-height: 1.25lvw;
     word-wrap: break-word
 }
 
@@ -108,9 +108,9 @@
 
 /* Thin buttons like sign in and register */
 .btn-thin {
-    height: 0.75rem;
-    padding: 0.75rem;
-    width: 6rem;
+    height: 0.938vw;
+    padding: 0.938vw;
+    width: 7.5vw;
 }
 
 /* Button group */
@@ -119,9 +119,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 15rem;
-    gap: 1rem;
-    margin: 1.25rem;
+    width: 18.75vw;
+    gap: 1.25vw;
+    margin: 1.563vw;
 }
 
 .btn-group > button {
@@ -143,33 +143,33 @@
 */
 .search-holder {
     display: flex;
-    width: 41.5625rem;
+    width: 51.953vw;
     height: max-content;
-    min-width: 22.5rem;
-    max-width: 45rem;
+    min-width: 28.125vw;
+    max-width: 56.25vw;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.313vw;
 
-    border-radius: 1.75rem;
-    opacity: 0.6rem;
+    border-radius: 2.188vw;
+    opacity: 0.75vw;
     background: var(--container-main, #ECE6F0);
 }
 
 .search-layer {
     display: flex;
-    padding: 0.25rem 0.375rem;
+    padding: 0.313vw 0.469vw;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.313vw;
     flex: 1 0 0;
     align-self: stretch;
 
-    opacity: 0.6rem;
+    opacity: 0.75vw;
 }
 
 .search-text {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: 0.781vw;
     flex: 1 0 0;
     align-self: stretch;
 
@@ -190,126 +190,10 @@
 }
 
 .search-trailing > img {
-    width: 1.125rem;
-    height: 1.125rem;
+    width: 1.406vw;
+    height: 1.406vw;
     flex-shrink: 0;
     cursor: pointer;
-}
-
-/* ------------- The Header ------------- */
-header {
-    display: flex;
-    padding: 1lvh 2lvw;
-    align-items: center;
-    align-content: center;
-    justify-content:space-evenly;
-    gap: 0rem 1.8125rem;
-    align-self: stretch;
-    /* flex-wrap: wrap; */
-
-    height: 12lvh;
-
-    border-bottom: 0.1rem solid var(--border-default);
-    opacity: 0.6rem;
-    background: var(--background-default);
-}
-
-/* Alinks */
-header > a {
-    display: flex;
-    padding: 0.5rem;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 0.5rem;
-    background-color: none;
-
-    text-decoration: none;
-}
-
-header > a:hover {
-    background-color: var(--background-neutral-tertiary);
-}
-
-/* Eye icon */
-.icon > img {
-    width: 2.1875rem;
-    height: 2.1875rem;
-    flex-shrink: 0;
-    cursor: pointer;
-}
-
-
-/* ------------- The Hero------------- */
-/* 
-<div class="hero">
-    <div class="title-subtitle">
-        <h1>WatchedThem</h1>
-        <p>Leave a review about your favorite movies</p>
-    </div>
-    <div class="btn-group">
-        <button class="btn btn-neutral">
-            Reviews
-        </button>
-        <button class="btn btn-primary">
-            New Post
-        </button>
-    </div>
-</div>
-*/
-.hero {
-    display: flex;
-    height: 85.8lvh;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    align-self: stretch;
-
-    background: var(--background-neutral-tertiary);  
-}
-
-.title-subtitle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.title-subtitle > h1 {
-    align-self: stretch;
-    color: var(--text-main);
-    text-align: center;
-
-    margin: 0;
-
-    /* Title Hero */
-    font-size: 4.5rem;
-    font-style: normal;
-    font-weight: bold;
-    line-height: 120%; /* 5.4rem */
-    letter-spacing: -0.135rem;
-}
-
-.title-subtitle > p {
-    align-self: stretch;
-    color: var(--text-subtle);
-    text-align: center;
-
-    margin: 0;
-
-    /* Subtitle */
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 120%; /* 2.4rem */
-}
-
-.hero > .btn-group {
-    display: flex;
-    width: 15rem;
-    align-items: center;
-    gap: 2rem;
 }
 
 /* ------------- The Pagination ------------- */
@@ -363,37 +247,37 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
 
 .pagination-main {
     display: flex;
-    width: 67rem;
+    width: 83.75vw;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.625vw;
 }
 
 .pagination-tail {
     display: flex;
-    padding: 0.5rem 0.75rem;
+    padding: 0.625vw 0.938vw;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.625vw;
 
     cursor: pointer;
-    border-radius: 0.5rem;
+    border-radius: 0.625vw;
 }
 
 .pagination-list {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.625vw;
 }
 
 .pagination-page, .pagination-page-current {
     display: flex;
-    padding: 0.5rem 0.75rem;
+    padding: 0.625vw 0.938vw;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    border-radius: 0.5rem;
+    border-radius: 0.625vw;
     background: none;
     color: var(--text-main);
 
@@ -417,86 +301,36 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
     cursor: default;
 }
 
-
-/* ------------- The Review Grid ------------- */
-/* 
-<div class="review-grid">
-
-    <div class="small-heading">
-        <h1>
-            Popular reviews
-        </h1>
-        <p>
-            Currently trending reviews left by others like you
-        </p>
-    </div>
-
-    <div class="card-grid">
-        
-
-    </div>
-</div>
-*/
-.review-grid {
-    display: flex;
-    width: 94lvw;
-    height: 90lvh;
-    padding: 3lvw 5lvh;
-    flex-direction: column;
-    gap: 3rem;
-    align-items: flex-start;
-    justify-content: center;
-}
-
-.small-heading {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-}
-
-.small-heading > h1 {
-    font-weight: bold;
-    font-size: 1.5rem;
-    line-height: 120%; /* 1.8rem */
-    letter-spacing: -0.03rem;
-    margin: 0;
-}
-
-.small-heading > p {
-    color: var(--text-subtle);
-    font-size: 1.25rem;
-    margin: 0;
-    line-height: 120%; /* 1.5rem */
-}
-
-.card-grid {
-    display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
-    gap: 4rem;
-    align-self: stretch;
-    flex-wrap: wrap;
-}
-
 /* ------------- The Review Card ------------- */
 /* 
+<!-- A standard review card -->
 <div class="review-card">
-    <img src="" alt="movie-poster" />
+
+    <!-- Image of a movie poster -->
+    <img src="/icons/shining-poster.png" alt="movie-poster" />
+
+    <!-- Everything else -->
     <div class="review-frame">
+
         <div class="review-frame-title">
             The Movie Title
         </div>
+
         <div class="review-frame-bottom">
-            <img src="" alt="user" />
+
+            <!-- User pfp -->
+            <img src="/icons/user-holder.png" alt="user" />
+
             <div class="review-frame-info">
                 <div class="the-stars">
-                    <img src="" alt="star" />
-                    <img src="" alt="star" />
-                    <img src="" alt="star" />
-                    <img src="" alt="star" />
-                    <img src="" alt="star" />
+                    <img src="/icons/star-full.png" alt="star full" />
+                    <img src="/icons/star-full.png" alt="star full" />
+                    <img src="/icons/star-full.png" alt="star full" />
+                    <img src="/icons/star-empty.png" alt="star empty" />
+                    <img src="/icons/star-empty.png" alt="star empty" />
                 </div>
+
+                <!-- User's name -->
                 Emily J. S.
             </div>
         </div>
@@ -505,58 +339,58 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
 */
 .review-card {
     display: flex;
-    width: 20lvw;
+    width: 24lvw;
     height: 8lvw;
-    padding: 1.5rem;
+    padding: 1.875vw;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.875vw;
 
-    border-radius: 0.5rem;
-    border: 0.1rem solid var(--border-default);
+    border-radius: 0.625vw;
+    border: 0.125vw solid var(--border-default);
     background: var(--background-default);
 }
 
-.review-card > img {
-    height: 100%;
+.review-card > img, .review-card-big > img {
+    height: 120%;
     flex-shrink: 0;
 }
 
 .review-frame {
     display: flex;
-    height: 6.3125rem;
+    height: 7.891vw;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 1.25rem;
+    gap: 1.563vw;
 }
 
 .review-frame-title {
     display: flex;
-    width: 11.625rem;
-    height: 1.8125rem;
+    width: 14.531vw;
+    height: 2.266vw;
     justify-content: center;
     align-items: flex-start;
     flex-shrink: 0;
 
-    line-height: 120%; /* 1.8rem */
-    letter-spacing: -0.03rem;
+    line-height: 120%; /* 2.25vw */
+    letter-spacing: -0.037vw;
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.875vw;
 }
 
 .review-frame-bottom {
     display: flex;
-    width: 11.625rem;
+    width: 14.531vw;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.625vw;
 }
 
 .review-frame-bottom > img {
     display: flex;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.125vw;
+    height: 3.125vw;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
@@ -566,15 +400,136 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.125rem;
+    gap: 0.156vw;
     flex: 1 0 0;
 
     color: var(--text-subtle)
 }
 
 .review-frame-info > .the-stars > img {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.875vw;
+    height: 1.875vw;
+}
+
+/* ------------- The Big Review Card ------------- */
+/* 
+<!-- A big review card -->
+<div class="review-card-big clickable">
+
+    <!-- The avatar and the name -->
+    <div class="review-card-big-avatar">
+        <img class="clickable" src="/icons/user-holder.png">
+        <p>Emily J. S.</p>
+    </div>
+
+    <!-- Review information -->
+    <div class="review-card-big-review">
+
+        <div class="the-stars">
+            <img src="/icons/star-full.png" alt="star full" />
+            <img src="/icons/star-full.png" alt="star full" />
+            <img src="/icons/star-full.png" alt="star full" />
+            <img src="/icons/star-empty.png" alt="star empty" />
+            <img src="/icons/star-empty.png" alt="star empty" />
+        </div>
+
+        <!-- The review itself -->
+        <p>"This movie was amazing, without a doubt!"</p>
+
+    </div>
+
+    <!-- Reactions on the review -->
+    <div class="review-card-big-reactions">
+        <div class="reaction">
+            <p>32.8k</p>
+            <img class="clickable" src="/icons/like-empty.png"/>
+        </div>
+        <div class="reaction">
+            <p>21.3k</p>
+            <img class="clickable" src="/icons/comment.png"/>
+        </div>
+    </div>
+</div>
+*/
+.review-card-big {
+    display: flex;
+    width: 100%;
+    height: 5.5lvw;
+    padding: 1.875vw;
+    align-items: center;
+    gap: 1.875vw;
+    align-self: stretch;
+
+    border-radius: 0.625vw;
+    border: 0.125vw solid var(--border-default);
+    background: var(--background-default);
+}
+
+.review-card-big-avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-card-big-avatar > * {
+    margin: 0;
+
+    color: var(--text-subtle);
+    font-size: 1lvw;
+}
+
+.review-card-big-avatar > img {
+    display: flex;
+    width: 6lvw;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 0.5lvw;
+}
+
+.review-card-big-review {
+    display: flex;
+    width: max-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.563vw;
+}
+
+.review-card-big-review > p {
+    font-size: 2.25lvw;
+    font-style: normal;
+    line-height: 140%; /* 3.281vw */
+    width: max-content;
+
+    margin: 0;
+}
+
+.review-card-big-review > .the-stars {
+    margin: 0;
+}
+
+.review-card-big-review > .the-stars > img {
+    width: 3lvw;
+}
+
+.review-card-big-reactions {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0.125;
+}
+
+.reaction {
+    display: flex;
+    align-items: center;
+}
+
+.reaction > img {
+    width: 2.5lvw;
 }
 
 /* ------------- The Stars ------------- */
@@ -582,4 +537,18 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
     display: flex;
     width: 100%;
     align-items: flex-start;
+}
+
+
+/* ------------- Clickable animation ------------- */
+
+.clickable {
+    cursor: pointer;
+    transition-duration: 0.25s;
+    
+}
+
+.clickable:hover {
+    transition-duration: 0.25s;
+    transform: translateY(-3px) scale(1.025);
 }

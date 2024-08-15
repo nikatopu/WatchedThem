@@ -4,3 +4,240 @@ body {
     padding: 0;
     margin: 0;
 }
+
+/* ------------- The Header ------------- */
+header {
+    display: flex;
+    padding: 1lvh 2lvw;
+    align-items: center;
+    align-content: center;
+    justify-content:space-evenly;
+    gap: 0vw 2.266vw;
+    align-self: stretch;
+    /* flex-wrap: wrap; */
+
+    height: 12lvh;
+
+    border-bottom: 0.125vw solid var(--border-default);
+    opacity: 0.75vw;
+    background: var(--background-default);
+}
+
+/* Alinks */
+header > a {
+    display: flex;
+    padding: 0.625vw;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 0.625vw;
+    background-color: none;
+
+    text-decoration: none;
+}
+
+header > a:hover {
+    background-color: var(--background-neutral-tertiary);
+}
+
+/* Eye icon */
+.icon > img {
+    width: 2.734vw;
+    height: 2.734vw;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* ------------- The Hero------------- */
+/* 
+<!-- A hero section -->
+<div class="hero">
+
+    <!-- Big title and small subtitle -->
+    <div class="title-subtitle">
+        <h1>WatchedThem</h1>
+        <p>Leave a review about your favorite movies</p>
+    </div>
+
+    <!-- Functional buttons, can also be only one button -->
+    <div class="btn-group">
+        <button class="btn btn-neutral">
+            Reviews
+        </button>
+        <button class="btn btn-primary">
+            New Post
+        </button>
+    </div>
+</div>
+*/
+.hero {
+    display: flex;
+    height: 85.8lvh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5vw;
+    align-self: stretch;
+
+    background: var(--background-neutral-tertiary);  
+}
+
+.title-subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625vw;
+}
+
+.title-subtitle > h1 {
+    align-self: stretch;
+    color: var(--text-main);
+    text-align: center;
+
+    margin: 0;
+
+    /* Title Hero */
+    font-size: 5.625vw;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 120%; /* 6.75vw */
+    letter-spacing: -0.169vw;
+}
+
+.title-subtitle > p {
+    align-self: stretch;
+    color: var(--text-subtle);
+    text-align: center;
+
+    margin: 0;
+
+    /* Subtitle */
+    font-size: 2.5vw;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 120%; /* 3vw */
+}
+
+.hero > .btn-group {
+    display: flex;
+    width: 18.75vw;
+    align-items: center;
+    gap: 2.5vw;
+}
+
+/* ------------- The Review Grid ------------- */
+/* 
+<!-- A review grid -->
+<div class="review-grid">
+
+    <!-- Small title section up on the left -->
+    <div class="small-heading">
+        <h1>
+            Popular reviews
+        </h1>
+        <p>
+            Currently trending reviews left by others like you
+        </p>
+    </div>
+
+    <!-- The entire card grid -->
+    <div class="card-grid">
+        <!-- Here should be the review cards, either big ones or small ones -->
+
+    </div>
+</div>
+*/
+.review-grid {
+    display: flex;
+    width: 94lvw;
+    height: 90lvh;
+    padding: 3lvw 5lvh;
+    flex-direction: column;
+    gap: 3.75vw;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.small-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625vw;
+}
+
+.small-heading > h1 {
+    font-weight: bold;
+    font-size: 1.875vw;
+    line-height: 120%; /* 2.25vw */
+    letter-spacing: -0.037vw;
+    margin: 0;
+}
+
+.small-heading > p {
+    color: var(--text-subtle);
+    font-size: 1.563vw;
+    margin: 0;
+    line-height: 120%; /* 1.875vw */
+}
+
+.card-grid {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    gap: 2.5vw;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+
+/* ------------- The Footer ------------- */
+
+footer {
+    display: flex;
+    padding: 2.5lvw 2.5lvw 12.5lvw 2.5lvw;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 1.25lvw;
+    flex-wrap: wrap;
+
+    border-top: 0.125vw solid var(--border-default);
+    opacity: 0.75vw;
+    background: var(--background-default);
+}
+
+.footer-start {
+    display: flex;
+    width: 20.469lvw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.875lvw;
+    flex-shrink: 0;
+}
+
+.footer-start > div {
+    display: flex;
+    gap: 1.25lvw;
+    align-items: center;
+}
+
+.footer-start > div > img {
+    width: 2lvw;
+}
+
+.footer-section {
+    display: flex;
+    width: 20.469lvw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9374lvw;
+    flex-shrink: 0;
+}
+
+.footer-section > h1 {
+    font-weight: 700;
+}
+
+.footer-section > a {
+    text-decoration: none;
+}
