@@ -241,3 +241,56 @@ footer {
 .footer-section > a {
     text-decoration: none;
 }
+
+/* ------------- The Footer ------------- */
+
+.verification {
+    display: flex;
+    padding: 2.75lvw 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+form {
+    display: flex;
+    min-width: 320px;
+    padding: 1.875lvw;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.875lvw;
+
+    border-radius: 0.625lvw;
+    border: 0.125vw solid var(--border-default);
+}
+
+form > .btn-group {
+    width: 90%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625lvw;
+    align-self: stretch;
+
+    font-size: 1.25lvw;
+}
+
+.form-group > input {
+    display: flex;
+    min-width: 240px;
+    padding: 0.938lvw 1.25lvw;
+    align-items: center;
+    align-self: stretch;
+
+    border-radius: 0.625lvw;
+    border: 0.0625lvw solid var(--border-default);
+}
+
+.form-group > a {
+    text-decoration: underline;
+    cursor: pointer;
+}

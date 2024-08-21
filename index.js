@@ -55,6 +55,14 @@ app.get("/", (req, res) => {
     res.render("home.ejs");
 })
 
+app.get("/login", (req, res) => {
+    res.render("login.ejs");
+})
+
+app.get("/register", (req, res) => {
+    res.render("register.ejs");
+})
+
 // Start the server
 app.listen(port, ()=>{
     console.log(`Server running on http://localhost:${port}`)
