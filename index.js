@@ -63,6 +63,10 @@ app.get("/register", (req, res) => {
     res.render("register.ejs");
 })
 
+app.get("/user", (req, res) => {
+    res.render("user.ejs");
+})
+
 // Start the server
 app.listen(port, ()=>{
     console.log(`Server running on http://localhost:${port}`)

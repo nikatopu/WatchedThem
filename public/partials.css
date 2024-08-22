@@ -131,16 +131,7 @@
 
 
 /* ------------- The Search Bar ------------- */
-/* 
-<div class="search-holder">
-    <div class="search-layer">
-        <input type="text" class="search-text" placeholder="Search for something...">
-        <div class="search-trailing">
-            <img src="icon">
-        </div>
-    </div>
-</div>
-*/
+
 .search-holder {
     display: flex;
     width: 51.953vw;
@@ -197,42 +188,6 @@
 }
 
 /* ------------- The Pagination ------------- */
-
-/* 
-REMOVE MAX WIDTH DIV IF YOU PUT THIS IN
-SOMETHING THAT HAS FLEX DIRECTION COLUMN
-
-<div class="pagination-max-width">
-    <div class="pagination-main">
-        <div class="pagination-tail pagination-disabled">
-            Previous
-        </div>
-    
-        <div class="pagination-list">
-            <div class="pagination-page-current">
-                1
-            </div>
-            <div class="pagination-page">
-                2
-            </div>
-            <div class="pagination-page">
-                ...
-            </div>
-            <div class="pagination-page">
-                32
-            </div>
-            <div class="pagination-page">
-                33
-            </div>
-        </div>
-    
-        <div class="pagination-tail">
-            Next
-        </div>
-    </div>
-    
-</div>
-*/
 
 .pagination-max-width {
     display: flex;
@@ -303,39 +258,7 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
 
 /* ------------- The Review Card ------------- */
 /* 
-<!-- A standard review card -->
-<div class="review-card">
 
-    <!-- Image of a movie poster -->
-    <img src="/icons/shining-poster.png" alt="movie-poster" />
-
-    <!-- Everything else -->
-    <div class="review-frame">
-
-        <div class="review-frame-title">
-            The Movie Title
-        </div>
-
-        <div class="review-frame-bottom">
-
-            <!-- User pfp -->
-            <img src="/icons/user-holder.png" alt="user" />
-
-            <div class="review-frame-info">
-                <div class="the-stars">
-                    <img src="/icons/star-full.png" alt="star full" />
-                    <img src="/icons/star-full.png" alt="star full" />
-                    <img src="/icons/star-full.png" alt="star full" />
-                    <img src="/icons/star-empty.png" alt="star empty" />
-                    <img src="/icons/star-empty.png" alt="star empty" />
-                </div>
-
-                <!-- User's name -->
-                Emily J. S.
-            </div>
-        </div>
-    </div>
-</div>
 */
 .review-card {
     display: flex;
@@ -413,43 +336,7 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
 
 /* ------------- The Big Review Card ------------- */
 /* 
-<!-- A big review card -->
-<div class="review-card-big clickable">
 
-    <!-- The avatar and the name -->
-    <div class="review-card-big-avatar">
-        <img class="clickable" src="/icons/user-holder.png">
-        <p>Emily J. S.</p>
-    </div>
-
-    <!-- Review information -->
-    <div class="review-card-big-review">
-
-        <div class="the-stars">
-            <img src="/icons/star-full.png" alt="star full" />
-            <img src="/icons/star-full.png" alt="star full" />
-            <img src="/icons/star-full.png" alt="star full" />
-            <img src="/icons/star-empty.png" alt="star empty" />
-            <img src="/icons/star-empty.png" alt="star empty" />
-        </div>
-
-        <!-- The review itself -->
-        <p>"This movie was amazing, without a doubt!"</p>
-
-    </div>
-
-    <!-- Reactions on the review -->
-    <div class="review-card-big-reactions">
-        <div class="reaction">
-            <p>32.8k</p>
-            <img class="clickable" src="/icons/like-empty.png"/>
-        </div>
-        <div class="reaction">
-            <p>21.3k</p>
-            <img class="clickable" src="/icons/comment.png"/>
-        </div>
-    </div>
-</div>
 */
 .review-card-big {
     display: flex;
@@ -552,3 +439,68 @@ SOMETHING THAT HAS FLEX DIRECTION COLUMN
     transition-duration: 0.25s;
     transform: translateY(-3px) scale(1.025);
 }
+
+
+/* ------------- User Head ------------- */
+
+
+.user-head {
+    display: flex;
+    padding: 3.9lvw 5lvw;
+    align-items: center;
+    gap: 3.75lvw;
+    align-self: stretch;
+}
+
+.user-head > .avatar {
+    display: flex;
+    width: 12.813lvw;
+    height: 12.813lvw;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar > img {
+    width: 14.375lvw;
+    height: 14.375lvw;
+    flex-shrink: 0;
+}
+
+.text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: max-content;
+}
+
+.text-group > p {
+    font-size: 2.656lvw;
+    font-style: normal;
+    font-weight: 400;
+
+    margin: 0;
+    color: var(--text-subtle);
+}
+
+.text-group > h1 {
+    font-size: 7.031lvw;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.user-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.781lvw;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.user-settings > img {
+    width: 3lvw;
+    height: 3lvw;
+}
+
+
+/* ------------- Movie List ------------- */
