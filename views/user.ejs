@@ -1,12 +1,13 @@
 <%- include('partials/header') %>
 
+<% if (locals.data) { %>
 <div class="user-head">
     <div class="avatar">
-        <img src="/icons/user-holder.png" alt="user pfp">
+        <img src=<%- data.pfplink %> alt="user pfp">
     </div>
     <div class="text-group">
         <p>you're signed in as</p>
-        <h1>User</h1>
+        <h1><%- data.displayname %></h1>
     </div>
     <div class="user-settings">
         <img class="clickable" src="/icons/icon-settings.png" alt="user pfp">
@@ -25,5 +26,11 @@
 
     </div>
 </div>
+
+<% } else { %>
+    <div class="error">
+        There was an error with getting your data, please try again.
+    </div>
+<% } %>
 
 <%- include('partials/footer') %>
