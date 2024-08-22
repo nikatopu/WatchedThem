@@ -48,6 +48,18 @@ header > a:hover {
     cursor: pointer;
 }
 
+.authed {
+    display: flex;
+    padding: 0.391lvw 0.469lvw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.781lvw;
+}
+
+.authed > img {
+    width: 2lvw;
+}
+
 /* ------------- The Hero------------- */
 /* 
 <!-- A hero section -->

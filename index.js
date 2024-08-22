@@ -49,24 +49,46 @@ const db = new pg.Client({
 });
 db.connect();
 
+// Getting user data
+async function getUserData(userID) {
+    const result = await db.query(
+        "SELECT pe.email, da.pfplink, da.displayname FROM person pe JOIN person_data da ON pe.id = da.id WHERE pe.id = $1;",
+        [userID]
+    );
+
+    if (result.rowCount > 0) {
+        return result.rows[0]
+    }
+
+    return null;
+}
+
+// Check if verified and if yes then return data
+async function getAllData(req) {
+    if (req.isAuthenticated()) {
+        return getUserData(req.user.id);
+    }
+
+    return null;
+}
+
 // GET routes
 
-app.get("/", (req, res) => {
-    res.render("home.ejs");
+app.get("/", async (req, res) => {
+    res.render("home.ejs", {data: await getAllData(req)});
 })
 
-app.get("/login", (req, res) => {
-    res.render("login.ejs");
+app.get("/login", async (req, res) => {
+    res.render("login.ejs", {data: await getAllData(req)});
 })
 
-app.get("/register", (req, res) => {
-    res.render("register.ejs");
+app.get("/register", async (req, res) => {
+    res.render("register.ejs", {data: await getAllData(req)});
 })
 
 app.get("/user", async (req, res) => {
     if (req.isAuthenticated()) {
         const result = await db.query("SELECT * FROM person_data WHERE id=$1", [req.user.id])
-        console.log(result);
 
         res.render("user.ejs", {data: result.rows[0]});
     } else {

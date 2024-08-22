@@ -34,11 +34,20 @@
         <!-- The design and project a links -->
             <a class="clickable" href="https://www.figma.com/proto/ila11OOtkfCdVOVlhUftQh/WathcedThem?node-id=2-549&t=ZFKhetwKMpvMwFss-1" target="_blank" rel="noopener noreferrer">Design</a>
             <a class="clickable" href="https://github.com/nikatopu/" target="_blank" rel="noopener noreferrer">Projects</a>
-
+        
+        <% if (data == null) {%>
+        
         <!-- Register/Sign in -->
          <div class="btn-group">
             <button class="btn btn-neutral btn-thin clickable" onclick='location.href="/login"'>Sign in</button>
             <button class="btn btn-primary btn-thin clickable" onclick='location.href="/register"'>Register</button>
          </div>
 
+         <% } else { %>
+
+            <div class="authed">
+                <img class="clickable" src=<%- data.pfplink %> onclick='location.href="/user"'>
+            </div>
+
+        <% } %>
     </header>
