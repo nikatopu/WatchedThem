@@ -22,16 +22,36 @@
 
     <div class="movie-list">
 
-        <!-- -->
-        <div class="movie">
-            <%- include('partials/the-stars') %>
-            <div class="poster">
-                <img src="/icons/shining-poster.png" alt="movie poster" class="clickable"/>
-            </div>
-        </div>
+        <% if (locals.data) { %>
+            <% if (data.posts.length > 0) { %>
+
+                <% data.posts.forEach(e => { %>
+
+                    <div class="movie">
+                        <%- include('partials/the-stars', {stars: e.stars}) %>
+                        <div class="poster">
+<!-- Getting poster images are connected to the APIs, so its a problem for the future me -->
+                            <img 
+                            src="/icons/shining-poster.png" 
+                            alt="movie poster" 
+                            class="clickable"/>
+                        </div>
+                    </div>
+
+                <% }); %>
+
+            <% } else { %>
+
+            <% } %>
+        <% } %>
 
     </div>
-    <%- include('partials/pagination') %>
+
+    <% if (locals.data) { %>
+        <% if (data.favs.length > 5) { %>
+            <%- include('partials/pagination') %>
+        <% } %>
+    <% } %>
 </div>
 
 <div class="user-review-grid">
@@ -40,14 +60,24 @@
     </div>
 
     <div class="card-grid">
-        <%- include('partials/user-review') %>
-        <%- include('partials/user-review') %>
-        <%- include('partials/user-review') %>
+        <% if (locals.data) { %>
+            <% if (data.posts.length > 0) { %>
+                <% data.posts.forEach(e => { %>
 
+                    <%- include('partials/user-review', {review: e}) %>
 
-        
+                <% }); %>
+            <% } else { %>
+
+            <% } %>
+        <% } %>
+
     </div>
-    <%- include('partials/pagination') %>
+    <% if (locals.data) { %>
+        <% if (data.posts.length > 3) { %>
+            <%- include('partials/pagination') %>
+        <% } %>
+    <% } %>
 </div>
 
 
@@ -57,14 +87,24 @@
     </div>
 
     <div class="card-grid">
-        <%- include('partials/user-review') %>
-        <%- include('partials/user-review') %>
-        <%- include('partials/user-review') %>
+        <% if (locals.data) { %>
+            <% if (data.favs.length > 0) { %>
+                <% data.favs.forEach(e => { %>
 
+                    <%- include('partials/user-review', {review: e}) %>
 
-        
+                <% }); %>
+            <% } else { %>
+
+            <% } %>
+        <% } %>
+    
     </div>
-    <%- include('partials/pagination') %>
+    <% if (locals.data) { %>
+        <% if (data.favs.length > 3) { %>
+            <%- include('partials/pagination') %>
+        <% } %>
+    <% } %>
 </div>
 
 

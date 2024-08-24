@@ -1,7 +1,18 @@
-<div class="the-stars">
-    <img src="/icons/star-full.png" alt="star full" />
-    <img src="/icons/star-full.png" alt="star full" />
-    <img src="/icons/star-full.png" alt="star full" />
-    <img src="/icons/star-empty.png" alt="star empty" />
-    <img src="/icons/star-empty.png" alt="star empty" />
-</div>
+<% if (locals.stars) { %>
+    <div class="the-stars">
+        <% for (let i=0; i < stars; i++) { %>
+            <img src="/icons/star-full.png" alt="star full" />
+        <% } %>
+        <% for (let j=0; j < (5-stars); j++) {%>
+            <img src="/icons/star-empty.png" alt="star empty" />
+        <% } %>
+    </div>
+<% } else { %>
+    <div class="the-stars">
+        <img src="/icons/star-full.png" alt="star full" />
+        <img src="/icons/star-full.png" alt="star full" />
+        <img src="/icons/star-full.png" alt="star full" />
+        <img src="/icons/star-empty.png" alt="star empty" />
+        <img src="/icons/star-empty.png" alt="star empty" />
+    </div>
+<% } %>

@@ -1,4 +1,32 @@
 <div class="user-review">
+    <% if (locals.review) { %>
+
+        <div class="user-reviewed-movie">
+<!-- Getting poster images are connected to the APIs, so its a problem for the future me -->
+            <img class="clickable" src="/icons/shining-poster.png" />
+        </div>
+
+        <div class="stars-and-review">
+            <div class="stars-and-reactions">
+                <%- include('the-stars', {stars: review.stars}) %>
+                <div class="reactions">
+                    <div class="reaction">
+                        <p>32.8k</p>
+                        <img class="clickable" src="/icons/like-empty.png"/>
+                    </div>
+                    <div class="reaction">
+                        <p>21.3k</p>
+                        <img class="clickable" src="/icons/comment.png"/>
+                    </div>
+                </div>
+            </div>
+            <p>
+                <%- review.review %>
+            </p>
+        </div>
+
+    <% } else { %>
+
     <div class="user-reviewed-movie">
         <img class="clickable" src="/icons/shining-poster.png" />
     </div>
@@ -26,4 +54,6 @@
             is that I know nothing”
         </p>
     </div>
+
+    <% } %>
 </div>

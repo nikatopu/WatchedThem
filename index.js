@@ -74,7 +74,7 @@ async function getUserPosts(userID) {
         return result.rows;
     }
 
-    return null;
+    return [];
 }
 
 // Get the favourites of the user
@@ -101,7 +101,7 @@ async function getUserFavourites(userID) {
         const finalResult = await Promise.all(promiseArr);
         return finalResult;;
     } else {
-        return null;
+        return [];
     }
 }
 
@@ -121,8 +121,33 @@ async function getAllData(req) {
 
         // email, pfplink, displayname
         // post array from which each has: id, movie, stars, review
-        // favourites array from which each has: post_id, person_id
+        // favourites array from which each has the same variables as the posts.
 
+        // It looks something like this
+        /*
+            {
+                email:
+                pfplink:
+                displayname:
+                posts: [
+                    {
+                        id:
+                        movie:
+                        stars:
+                        review:
+                    }
+                ]
+                favs: [
+                    {
+                        id:
+                        movie:
+                        stars:
+                        review:
+                    }
+                ]
+            }
+        */
+            console.log(oneBigObject);
         return oneBigObject;
     }
 
