@@ -49,7 +49,7 @@ const db = new pg.Client({
 });
 db.connect();
 
-// Getting user data
+// Getting user data -> email, pfplink & displayname
 async function getUserData(userID) {
     const result = await db.query(
         "SELECT pe.email, da.pfplink, da.displayname FROM person pe JOIN person_data da ON pe.id = da.id WHERE pe.id = $1;",
@@ -63,10 +63,67 @@ async function getUserData(userID) {
     return null;
 }
 
+// Get user posts -> id, movie, stars, review
+async function getUserPosts(userID) {
+    const result = await db.query(
+        "SELECT id, movie, stars, review FROM post WHERE post.person_id = $1;",
+        [userID]
+    );
+
+    if (result.rowCount > 0) {
+        return result.rows;
+    }
+
+    return null;
+}
+
+// Get the favourites of the user
+async function getUserFavourites(userID) {
+    // Get all of the user's favourite post ids
+    const result = await db.query(
+        "SELECT * FROM favourites WHERE person_id = $1;",
+        [userID]
+    );
+
+    if (result.rowCount > 0) {
+        // If the user has favourites, create a new array of only those posts
+        let promiseArr = Array.from(
+            result.rows, 
+            async e => {
+                let answer = await db.query("SELECT * FROM post WHERE id=$1", [e.post_id]);
+                if (answer.rowCount > 0) {
+                    return answer.rows[0];
+                }
+            }
+        );
+
+        // Wait for all promises to be complete
+        const finalResult = await Promise.all(promiseArr);
+        return finalResult;;
+    } else {
+        return null;
+    }
+}
+
 // Check if verified and if yes then return data
 async function getAllData(req) {
     if (req.isAuthenticated()) {
-        return getUserData(req.user.id);
+        // If user is authenticated, return data as a single object
+        const userData = await getUserData(req.user.id);
+        const userPosts = await getUserPosts(req.user.id);
+        const userFavs = await getUserFavourites(req.user.id);
+
+        const oneBigObject = {...userData, 
+            posts: userPosts, 
+            favs: userFavs};
+
+        // This holds the following variables:
+
+        // email, pfplink, displayname
+        // post array from which each has: id, movie, stars, review
+        // favourites array from which each has: post_id, person_id
+
+        return oneBigObject;
     }
 
     return null;
@@ -75,22 +132,24 @@ async function getAllData(req) {
 // GET routes
 
 app.get("/", async (req, res) => {
-    res.render("home.ejs", {data: await getAllData(req)});
+    const data = await getAllData(req);
+    res.render("home.ejs", {data: data});
 })
 
 app.get("/login", async (req, res) => {
-    res.render("login.ejs", {data: await getAllData(req)});
+    const data = await getAllData(req);
+    res.render("login.ejs", {data: data});
 })
 
 app.get("/register", async (req, res) => {
-    res.render("register.ejs", {data: await getAllData(req)});
+    const data = await getAllData(req);
+    res.render("register.ejs", {data: data});
 })
 
 app.get("/user", async (req, res) => {
     if (req.isAuthenticated()) {
-        const result = await db.query("SELECT * FROM person_data WHERE id=$1", [req.user.id])
-
-        res.render("user.ejs", {data: result.rows[0]});
+        const data = await getAllData(req);
+        res.render("user.ejs", {data: data});
     } else {
         res.redirect("/login")
     }

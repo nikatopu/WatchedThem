@@ -57,7 +57,7 @@ header > a:hover {
 }
 
 .authed > img {
-    width: 2lvw;
+    width: 2.5lvw;
 }
 
 /* ------------- The Hero------------- */
@@ -82,7 +82,7 @@ header > a:hover {
     </div>
 </div>
 */
-.hero {
+.hero, .hero-big {
     display: flex;
     height: 85.8lvh;
     flex-direction: column;
@@ -92,6 +92,10 @@ header > a:hover {
     align-self: stretch;
 
     background: var(--background-neutral-tertiary);  
+}
+
+.hero-big {
+    height: 100lvh;
 }
 
 .title-subtitle {
@@ -159,7 +163,7 @@ header > a:hover {
     </div>
 </div>
 */
-.review-grid {
+.review-grid, .user-review-grid {
     display: flex;
     width: 94lvw;
     height: 90lvh;
@@ -168,6 +172,10 @@ header > a:hover {
     gap: 3.75vw;
     align-items: flex-start;
     justify-content: center;
+}
+
+.user-review-grid { 
+    height: max-content;
 }
 
 .small-heading {
@@ -306,3 +314,42 @@ form > .btn-group {
     text-decoration: underline;
     cursor: pointer;
 }
+
+
+/* ------------- Movie List ------------- */
+
+.section-movie-list {
+    display: flex;
+    padding: 4.2lvw 5lvw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3.75lvw;
+    align-self: stretch;
+
+    background-color: var(--background-neutral-tertiary);
+}
+
+.movie-list {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.735lvw;
+}
+
+.movie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.movie > .the-stars > img {
+    width: 3lvw;
+}
+
+.poster > img {
+    width: 15lvw;
+}
+
+
+/* ------------- Your Reviews ------------- */
+

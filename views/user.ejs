@@ -15,17 +15,58 @@
 
 </div>
 
-<div class="hero">
+<div class="section-movie-list">
     <div class="small-heading">
-
+        <h1>Movies you've reviewed</h1>
     </div>
+
     <div class="movie-list">
 
-    </div>
-    <div class="pagination">
+        <!-- -->
+        <div class="movie">
+            <%- include('partials/the-stars') %>
+            <div class="poster">
+                <img src="/icons/shining-poster.png" alt="movie poster" class="clickable"/>
+            </div>
+        </div>
 
     </div>
+    <%- include('partials/pagination') %>
 </div>
+
+<div class="user-review-grid">
+    <div class="small-heading">
+        <h1>Your Reviews</h1>
+    </div>
+
+    <div class="card-grid">
+        <%- include('partials/user-review') %>
+        <%- include('partials/user-review') %>
+        <%- include('partials/user-review') %>
+
+
+        
+    </div>
+    <%- include('partials/pagination') %>
+</div>
+
+
+<div class="user-review-grid gray-back">
+    <div class="small-heading">
+        <h1>Your Favourites</h1>
+    </div>
+
+    <div class="card-grid">
+        <%- include('partials/user-review') %>
+        <%- include('partials/user-review') %>
+        <%- include('partials/user-review') %>
+
+
+        
+    </div>
+    <%- include('partials/pagination') %>
+</div>
+
 
 <% } else { %>
     <div class="error">

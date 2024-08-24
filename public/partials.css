@@ -450,6 +450,8 @@
     align-items: center;
     gap: 3.75lvw;
     align-self: stretch;
+
+    height: 50lvh;
 }
 
 .user-head > .avatar {
@@ -503,4 +505,57 @@
 }
 
 
-/* ------------- Movie List ------------- */
+/* ------------- User Reviews ------------- */
+
+.user-review {
+    display: flex;
+    width: 83.75lvw;
+    align-items: flex-start;
+    gap: 2.734lvw;
+    height: max-content;
+}
+
+.gray-back {
+    background-color: var(--background-neutral-tertiary);
+}
+
+.user-reviewed-movie > img {
+    width: 18.75lvw;
+    flex-shrink: 0;
+}
+
+.stars-and-review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.781lvw;
+    flex: 1 0 0;
+}
+
+.stars-and-reactions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.stars-and-reactions > .reactions {
+    display: flex;
+    width: 15lvw;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.156lvw;
+}
+
+.stars-and-reactions > .the-stars > img {
+    width: 5lvw;
+}
+
+.stars-and-review > p {
+    text-align: justify;
+    font-size: 2.422lvw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
