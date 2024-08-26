@@ -1,19 +1,7 @@
 <%- include('partials/header') %>
 
 <% if (locals.data) { %>
-<div class="user-head">
-    <div class="avatar">
-        <img src=<%- data.pfplink %> alt="user pfp">
-    </div>
-    <div class="text-group">
-        <p>you're signed in as</p>
-        <h1><%- data.displayname %></h1>
-    </div>
-    <div class="user-settings">
-        <img class="clickable" src="/icons/icon-settings.png" alt="user pfp">
-    </div>
-
-</div>
+    <%- include('partials/user-head', {data: data}) %>
 
 <div class="section-movie-list">
     <div class="small-heading">

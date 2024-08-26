@@ -1,0 +1,174 @@
+<%- include('partials/header') %>
+
+<script> function toggleHideAndRotate(hideID, rotateID) {
+    document.getElementById(hideID).classList.toggle("hidden"); 
+    document.getElementById(rotateID).classList.toggle("rotated");
+ } </script>
+
+<% if (locals.data) { %>
+    <div class="user-head">
+        <div class="avatar">
+            <img src=<%- data.pfplink %> alt="user pfp">
+        </div>
+        <div class="text-group">
+            <p>you're signed in as</p>
+            <h1><%- data.displayname %></h1>
+        </div>
+        <div class="user-settings">
+            <button class="btn btn-neutral clickable" onclick='location.href="/logout"'>
+                Log Out
+            </button>
+        </div>
+    </div>
+<% } %>
+
+<!-- Change the display name of the user -->
+<div class="dropdown-settings">
+    <div class="dropdown-line clickable" onclick='toggleHideAndRotate("settings-displayname", "settings-displayname-dropdown")'>
+        <p>Change Display Name</p>
+        <img 
+        id="settings-displayname-dropdown"
+        src="/icons/arrow-drop-down.png"
+        alt="dropdown pic"
+        >
+        <hr>
+    </div>
+
+    <div class="form-center hidden" id="settings-displayname">
+        <form action="/change-display-name" method="POST">
+            <div class="form-group">
+                <label for="displayname">New Display Name</label>
+                <input type="text" class="form-control" name="displayname" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Current Password</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-fill btn-primary clickable">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Change the profile picture link of the user -->
+<div class="dropdown-settings">
+    <div class="dropdown-line clickable" onclick='toggleHideAndRotate("settings-photo", "settings-photo-dropdown")'>
+        <p>Change Photo</p>
+        <img 
+        id="settings-photo-dropdown"
+        src="/icons/arrow-drop-down.png"
+        alt="dropdown pic"
+        >
+        <hr>
+    </div>
+
+    <div class="form-center hidden" id="settings-photo">
+        <form action="/change-photo" method="POST">
+            <div class="form-group">
+                <label for="pfplink">New Photo Link</label>
+                <input type="url" class="form-control" name="pfplink" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Current Password</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-fill btn-primary clickable">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Change the email of the user -->
+<div class="dropdown-settings">
+    <div class="dropdown-line clickable" onclick='toggleHideAndRotate("settings-email", "settings-email-dropdown")'>
+        <p>Change Email</p>
+        <img 
+        id="settings-email-dropdown"
+        src="/icons/arrow-drop-down.png"
+        alt="dropdown pic"
+        >
+        <hr>
+    </div>
+
+    <div class="form-center hidden" id="settings-email">
+        <form action="/change-email" method="POST">
+            <div class="form-group">
+                <label for="username">New Email</label>
+                <input type="email" class="form-control" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Current Password</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-fill btn-primary clickable">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Change the password of the user -->
+<div class="dropdown-settings">
+    <div class="dropdown-line clickable" onclick='toggleHideAndRotate("settings-password", "settings-password-dropdown")'>
+        <p>Change Password</p>
+        <img 
+        id="settings-password-dropdown"
+        src="/icons/arrow-drop-down.png"
+        alt="dropdown pic"
+        >
+        <hr>
+    </div>
+
+    <div class="form-center hidden" id="settings-password">
+        <form action="/change-password" method="POST">
+            <div class="form-group">
+                <label for="newpassword">New Password</label>
+                <input type="password" class="form-control" name="newpassword" required>
+            </div>
+            <div class="form-group">
+                <label for="repeatpassword">Confirm Password</label>
+                <input type="password" class="form-control" name="repeatpassword" required>
+            </div>
+            <div class="form-group">
+                <label for="oldpassword">Current Password</label>
+                <input type="password" class="form-control" name="oldpassword" required>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-fill btn-primary clickable">Confirm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- DELETE THE ACCOUNT OF THE USER -->
+<div class="dropdown-settings">
+    <div class="dropdown-line clickable" onclick='toggleHideAndRotate("settings-delete", "settings-delete-dropdown")'>
+        <p>Delete Account</p>
+        <img 
+        id="settings-delete-dropdown"
+        src="/icons/arrow-drop-down.png"
+        alt="dropdown pic"
+        >
+        <hr>
+    </div>
+
+    <div class="form-center hidden" id="settings-delete">
+        <form action="/delete-account" method="POST">
+            <div class="form-group">
+                <label for="newpassword">Current Password</label>
+                <input type="password" class="form-control" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="repeatpassword">Confirm Password</label>
+                <input type="password" class="form-control" name="repeatpassword" required>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-fill btn-danger clickable">DELETE ACCOUNT</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

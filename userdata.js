@@ -1,8 +1,12 @@
+// Import dependencies
 import pg from "pg";
 import env from "dotenv";
 
+
+// Start the env process
 env.config();
 
+// Connect to the database
 const db = new pg.Client({
     user: process.env.PG_USER,
     host: process.env.PG_HOST,
@@ -12,6 +16,7 @@ const db = new pg.Client({
 });
 db.connect();
 
+// Create the user info functions
 /**
  * Gets basic data about the user, like the email, the pfp link and the display name.
  * 

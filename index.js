@@ -104,6 +104,44 @@ getPath("/register", "register.ejs");
 
 // GET routes that require authentication
 getPathAuth("/user", "user.ejs", "/login");
+getPathAuth("/user-settings", "user-settings.ejs", "/login");
+
+
+// --------------------- POST to update information --------------------- //
+
+// Update the display name
+app.post("/change-display-name", async (req, res) => {
+    // Check if the user is verified, just in case
+    if (!req.isAuthenticated) {
+        res.redirect("/login");
+    }
+
+    // Check if the passwords match
+    const typedPassword = req.body.password;
+    const hashedPassword = req.user.password;
+
+    bcrypt.compare(typedPassword, hashedPassword, async (err, valid) => {
+        // if there was an error, throw the error
+        if (err) {
+            console.error(err);
+        }
+
+        // Otherwise, if the passwords match, update the information
+        if (valid===true) {
+            const newDisplayName = req.body.displayname;
+            await db.query
+            (
+                "UPDATE person_data SET displayname = $1 WHERE id = $2", 
+                [newDisplayName, req.user.id]
+            )
+            res.redirect("/user");
+        } else {
+            res.render("user-settings.ejs", {data: await userdata.getAllData(req)});
+        }
+    })
+
+})
+
 
 // Logging out
 app.get("/logout", (req, res) => {

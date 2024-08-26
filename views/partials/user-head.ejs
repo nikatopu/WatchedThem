@@ -1,0 +1,19 @@
+<% if (locals.data) { %>
+    <div class="user-head">
+        <div class="avatar">
+            <img src=<%- data.pfplink %> alt="user pfp">
+        </div>
+        <div class="text-group">
+            <p>you're signed in as</p>
+            <h1><%- data.displayname %></h1>
+        </div>
+        <div class="user-settings">
+            <img 
+            class="clickable" 
+            src="/icons/icon-settings.png" 
+            alt="user pfp"
+            onclick='location.href="/user-settings"'
+            >
+        </div>
+    </div>
+<% } %>
