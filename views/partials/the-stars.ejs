@@ -1,4 +1,7 @@
+<%# These stars are used as ratings %>
+
 <% if (locals.stars) { %>
+    <%# We should get the stars as data to process how many stars we should show filled %>
     <div class="the-stars">
         <% for (let i=0; i < stars; i++) { %>
             <img src="/icons/star-full.png" alt="star full" />
@@ -8,6 +11,7 @@
         <% } %>
     </div>
 <% } else { %>
+    <%# If no data is passed, we'll use the default 3 stars (for some reason) %>
     <div class="the-stars">
         <img src="/icons/star-full.png" alt="star full" />
         <img src="/icons/star-full.png" alt="star full" />

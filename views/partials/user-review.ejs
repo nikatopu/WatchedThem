@@ -1,5 +1,8 @@
+<%# This section is like a huge review, the one that hold the entire width %>
+
 <div class="user-review">
     <% if (locals.review) { %>
+        <%# We should be getting the data of what review to show %>
 
         <div class="user-reviewed-movie">
 <!-- Getting poster images are connected to the APIs, so its a problem for the future me -->
@@ -8,6 +11,7 @@
 
         <div class="stars-and-review">
             <div class="stars-and-reactions">
+                <%# And we're passing the data to the stars to show correct amount %>
                 <%- include('the-stars', {stars: review.stars}) %>
                 <div class="reactions">
                     <div class="reaction">
@@ -21,12 +25,13 @@
                 </div>
             </div>
             <p>
+                <%# Double review, nice %>
                 <%- review.review %>
             </p>
         </div>
 
     <% } else { %>
-
+    <%# If all else fails, show a random review %>
     <div class="user-reviewed-movie">
         <img class="clickable" src="/icons/shining-poster.png" />
     </div>
