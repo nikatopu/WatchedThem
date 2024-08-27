@@ -35,3 +35,87 @@
         </div>
     </div>
 </div>
+
+<style>
+    /* ------------- The Big Review Card ------------- */
+    .review-card-big {
+        display: flex;
+        width: 100%;
+        height: 5.5lvw;
+        padding: 1.875vw;
+        align-items: center;
+        gap: 1.875vw;
+        align-self: stretch;
+
+        border-radius: 0.625vw;
+        border: 0.125vw solid var(--border-default);
+        background: var(--background-default);
+    }
+
+    .review-card-big-avatar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .review-card-big-avatar > * {
+        margin: 0;
+
+        color: var(--text-subtle);
+        font-size: 1lvw;
+    }
+
+    .review-card-big-avatar > img {
+        display: flex;
+        width: 6lvw;
+        justify-content: center;
+        align-items: center;
+
+        margin-bottom: 0.5lvw;
+    }
+
+    .review-card-big-review {
+        display: flex;
+        width: max-content;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1.563vw;
+    }
+
+    .review-card-big-review > p {
+        font-size: 2.25lvw;
+        font-style: normal;
+        line-height: 140%; /* 3.281vw */
+        width: max-content;
+
+        margin: 0;
+    }
+
+    .review-card-big-review > .the-stars {
+        margin: 0;
+    }
+
+    .review-card-big-review > .the-stars > img {
+        width: 3lvw;
+    }
+
+    .review-card-big-reactions {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 0.125;
+    }
+
+    .reaction {
+        display: flex;
+        align-items: center;
+    }
+
+    .reaction > img {
+        width: 2.5lvw;
+    }
+</style>

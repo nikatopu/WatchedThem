@@ -27,3 +27,74 @@
         </div>
     </div>
 </div>
+
+
+<style>
+    /* ------------- The Pagination ------------- */
+    .pagination-max-width {
+        display: flex;
+        flex-direction: row;
+        /* align-items: center; */
+        justify-content: center;
+
+        padding: 1% 0%;
+
+        width: 100%;
+    }
+
+    .pagination-main {
+        display: flex;
+        width: 83.75vw;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625vw;
+    }
+
+    .pagination-tail {
+        display: flex;
+        padding: 0.625vw 0.938vw;
+        justify-content: center;
+        align-items: center;
+        gap: 0.625vw;
+
+        cursor: pointer;
+        border-radius: 0.625vw;
+    }
+
+    .pagination-list {
+        display: flex;
+        align-items: center;
+        gap: 0.625vw;
+    }
+
+    .pagination-page, .pagination-page-current {
+        display: flex;
+        padding: 0.625vw 0.938vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 0.625vw;
+        background: none;
+        color: var(--text-main);
+
+        cursor: pointer;
+    }
+
+    .pagination-page:hover, .pagination-tail:not(.pagination-disabled):hover {
+        background-color: var(--background-neutral-tertiary);
+    }
+
+    .pagination-page-current {
+        background: var(--background-primary-default-hover);
+        color: var(--text-white);
+
+        cursor: default;
+    }
+
+    .pagination-disabled {
+        color: var(--text-subtle);
+
+        cursor: default;
+    }
+</style>

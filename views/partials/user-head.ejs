@@ -17,3 +17,69 @@
         </div>
     </div>
 <% } %>
+
+
+<style>
+    /* ------------- User Head ------------- */
+    .user-head {
+        display: flex;
+        padding: 3.9lvw 5lvw;
+        align-items: center;
+        gap: 3.75lvw;
+        align-self: stretch;
+
+        height: 50lvh;
+    }
+
+    .user-head > .avatar {
+        display: flex;
+        width: 14lvw;
+        height: 14lvw;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    .avatar > img {
+        width: 14.375lvw;
+        /* height: 14.375lvw; */
+        flex-shrink: 0;
+    }
+
+    .text-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: max-content;
+    }
+
+    .text-group > p {
+        font-size: 2.656lvw;
+        font-style: normal;
+        font-weight: 400;
+
+        margin: 0;
+        color: var(--text-subtle);
+    }
+
+    .text-group > h1 {
+        font-size: 7.031lvw;
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    .user-settings {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.781lvw;
+        flex: 1 0 0;
+        align-self: stretch;
+    }
+
+    .user-settings > img {
+        width: 3lvw;
+        height: 3lvw;
+    }
+</style>

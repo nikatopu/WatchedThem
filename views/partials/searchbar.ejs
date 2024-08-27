@@ -2,7 +2,65 @@
     <div class="search-layer">
         <input type="text" class="search-text" placeholder="Search for something...">
         <div class="search-trailing">
-            <img src="icon">
+            <img src="/icons/icon-search.png">
         </div>
     </div>
 </div>
+
+<style>
+    /* ------------- The Search Bar ------------- */
+    .search-holder {
+        display: flex;
+        width: 51.953vw;
+        height: max-content;
+        min-width: 28.125vw;
+        max-width: 56.25vw;
+        align-items: center;
+        gap: 0.313vw;
+
+        border-radius: 2.188vw;
+        opacity: 0.75vw;
+        background: var(--container-main, #ECE6F0);
+    }
+
+    .search-layer {
+        display: flex;
+        padding: 0.313vw 0.469vw;
+        align-items: center;
+        gap: 0.313vw;
+        flex: 1 0 0;
+        align-self: stretch;
+
+        opacity: 0.75vw;
+    }
+
+    .search-text {
+        display: flex;
+        align-items: center;
+        gap: 0.781vw;
+        flex: 1 0 0;
+        align-self: stretch;
+
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    .search-text:focus {
+        background-color: transparent;
+        border-color: transparent;
+        outline: none;
+    }
+
+    .search-trailing {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .search-trailing > img {
+        width: 1.406vw;
+        height: 1.406vw;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+</style>

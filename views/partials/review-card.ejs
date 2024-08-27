@@ -1,5 +1,5 @@
 <!-- A standard review card -->
-<div class="review-card">
+<div class="review-card clickable">
 
     <!-- Image of a movie poster -->
     <img src="/icons/shining-poster.png" alt="movie-poster" />
@@ -31,3 +31,82 @@
         </div>
     </div>
 </div>
+
+
+
+<style>
+    /* ------------- The Review Card ------------- */
+    .review-card {
+        display: flex;
+        width: 24lvw;
+        height: 8lvw;
+        padding: 1.875vw;
+        justify-content: center;
+        align-items: center;
+        gap: 1.875vw;
+
+        border-radius: 0.625vw;
+        border: 0.125vw solid var(--border-default);
+        background: var(--background-default);
+    }
+
+    .review-card > img, .review-card-big > img {
+        height: 120%;
+        flex-shrink: 0;
+    }
+
+    .review-frame {
+        display: flex;
+        height: 7.891vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 1.563vw;
+    }
+
+    .review-frame-title {
+        display: flex;
+        width: 14.531vw;
+        height: 2.266vw;
+        justify-content: center;
+        align-items: flex-start;
+        flex-shrink: 0;
+
+        line-height: 120%; /* 2.25vw */
+        letter-spacing: -0.037vw;
+        font-weight: 600;
+        font-size: 1.875vw;
+    }
+
+    .review-frame-bottom {
+        display: flex;
+        width: 14.531vw;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625vw;
+    }
+
+    .review-frame-bottom > img {
+        display: flex;
+        width: 3.125vw;
+        height: 3.125vw;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .review-frame-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.156vw;
+        flex: 1 0 0;
+
+        color: var(--text-subtle)
+    }
+
+    .review-frame-info > .the-stars > img {
+        width: 1.875vw;
+        height: 1.875vw;
+    }
+</style>
