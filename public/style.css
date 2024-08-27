@@ -50,14 +50,19 @@ header > a:hover {
 
 .authed {
     display: flex;
-    padding: 0.391lvw 0.469lvw;
+    /* padding: 0.391lvw 0.469lvw; */
     justify-content: center;
     align-items: center;
     gap: 0.781lvw;
+    width: 3lvw;
+    height: 3lvw;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .authed > img {
-    width: 2.5lvw;
+    width: 3lvw;
+    object-fit: fill;
 }
 
 /* ------------- The Hero------------- */

@@ -456,15 +456,17 @@
 
 .user-head > .avatar {
     display: flex;
-    width: 12.813lvw;
-    height: 12.813lvw;
+    width: 14lvw;
+    height: 14lvw;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
 .avatar > img {
     width: 14.375lvw;
-    height: 14.375lvw;
+    /* height: 14.375lvw; */
     flex-shrink: 0;
 }
 

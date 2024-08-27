@@ -125,7 +125,9 @@
         <form action="/change-password" method="POST">
             <div class="form-group">
                 <label for="newpassword">New Password</label>
-                <input type="password" class="form-control" name="newpassword" required>
+                <input type="password" class="form-control" name="newpassword" id="newpassword"
+                pattern="^^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
+                <!-- Must include at least one lowercase letter, one uppercase letter, one special character and one number -->
             </div>
             <div class="form-group">
                 <label for="repeatpassword">Confirm Password</label>

@@ -139,9 +139,175 @@ app.post("/change-display-name", async (req, res) => {
             res.render("user-settings.ejs", {data: await userdata.getAllData(req)});
         }
     })
-
 })
 
+// Update the pfp link
+app.post("/change-photo", async (req, res) => {
+    // Check if the user is verified, just in case
+    if (!req.isAuthenticated) {
+        res.redirect("/login");
+    }
+
+    // Check if the passwords match
+    const typedPassword = req.body.password;
+    const hashedPassword = req.user.password;
+
+    bcrypt.compare(typedPassword, hashedPassword, async (err, valid) => {
+        // if there was an error, throw the error
+        if (err) {
+            console.error(err);
+        }
+
+        // Otherwise, if the passwords match, update the information
+        if (valid===true) {
+            const newpfplink = req.body.pfplink;
+            await db.query
+            (
+                "UPDATE person_data SET pfplink = $1 WHERE id = $2", 
+                [newpfplink, req.user.id]
+            )
+            res.redirect("/user");
+        } else {
+            res.render("user-settings.ejs", {data: await userdata.getAllData(req)});
+        }
+    })
+})
+
+// Update the email adress
+app.post("/change-email", async (req, res) => {
+    // Check if the user is verified, just in case
+    if (!req.isAuthenticated) {
+        res.redirect("/login");
+    }
+
+    // Check if the passwords match
+    const typedPassword = req.body.password;
+    const hashedPassword = req.user.password;
+
+    bcrypt.compare(typedPassword, hashedPassword, async (err, valid) => {
+        // if there was an error, throw the error
+        if (err) {
+            console.error(err);
+        }
+
+        // Otherwise, if the passwords match, update the information
+        if (valid===true) {
+            const newEmail = req.body.username;
+            await db.query
+            (
+                "UPDATE person SET email = $1 WHERE id = $2", 
+                [newEmail, req.user.id]
+            )
+            res.redirect("/user");
+        } else {
+            res.render("user-settings.ejs", {data: await userdata.getAllData(req)});
+        }
+    })
+})
+
+// Update the password
+app.post("/change-password", async (req, res) => {
+    // Check if the user is verified, just in case
+    if (!req.isAuthenticated) {
+        res.redirect("/login");
+    }
+
+    // Check if the passwords match
+    const typedPassword = req.body.oldpassword;
+    const hashedPassword = req.user.password;
+
+    bcrypt.compare(typedPassword, hashedPassword, async (err, valid) => {
+        // if there was an error, throw the error
+        if (err) {
+            console.error(err);
+        }
+
+        // If the old password is incorrect, deal with it
+        if (!valid) {
+            res.render("user-settings.ejs", {data: await userdata.getAllData(req)});
+        }
+
+        // Check if the new passwords match
+        const newPassword = req.body.newpassword;
+        const repeatPassword = req.body.repeatpassword;
+
+        if (newPassword === repeatPassword) {
+
+            // If it does match, encrypt the password and save it
+            bcrypt.hash(newPassword, saltRounds, async (err, hash) => {
+
+                // If there is an error, throw it
+                if (err) {
+                    console.error("error while hashing the new password");
+                }
+
+                // If there is no error, update the password
+                await db.query
+                (
+                    "UPDATE person SET password = $1 WHERE id = $2", 
+                    [newPassword, req.user.id]
+                )
+
+                res.redirect("/user");
+            })
+            
+        }
+    })
+})
+
+// Deleting the account
+app.get("/delete-account-permanent", async (req, res) => {
+    // Check if the user is actually logged in
+    if (!req.isAuthenticated) {
+        res.redirect("/login");
+    } 
+
+    // If they are logged in, start deleting their data
+    // First delete the posts, comments, likes and favourites
+    await db.query("DELETE FROM comment_like WHERE person_id=$1;", [req.user.id]);
+    await db.query("DELETE FROM post_like WHERE person_id=$1;", [req.user.id]);
+    await db.query("DELETE FROM favourites WHERE person_id=$1;", [req.user.id]);
+    await db.query("DELETE FROM comment WHERE person_id=$1;", [req.user.id]);
+    await db.query("DELETE FROM post WHERE person_id=$1;", [req.user.id]);
+
+    // Now delete the person data
+    await db.query("DELETE FROM person_data WHERE id=$1;", [req.user.id]);
+
+    // And finally, delete the person itself
+    await db.query("DELETE FROM person WHERE id=$1", [req.user.id]);
+
+    // And when everything is done, redirect the user to /register
+    res.redirect("/logout");
+})
+
+app.post("/delete-account", async (req, res) => {
+    // Check if the user is verified, just in case
+    if (!req.isAuthenticated) {
+        res.redirect("/login");
+    } else {
+
+    // Check if the passwords match
+    const typedPassword = req.body.password;
+    const hashedPassword = req.user.password;
+
+    bcrypt.compare(typedPassword, hashedPassword, async (err, valid) => {
+        // if there was an error, throw the error
+        if (err) {
+            console.error(err);
+        }
+
+        // If the old password is incorrect, deal with it
+        if (!valid) {
+            res.render("user-settings.ejs", {data: await userdata.getAllData(req)});
+        }
+
+        // If it does, render the warning
+        res.render("warning.ejs", {data: await userdata.getAllData(req)});
+            
+    })
+
+    }  
+})
 
 // Logging out
 app.get("/logout", (req, res) => {
