@@ -6,20 +6,7 @@
  } </script>
 
 <% if (locals.data) { %>
-    <div class="user-head">
-        <div class="avatar">
-            <img src=<%- data.pfplink %> alt="user pfp">
-        </div>
-        <div class="text-group">
-            <p>you're signed in as</p>
-            <h1><%- data.displayname %></h1>
-        </div>
-        <div class="user-settings">
-            <button class="btn btn-neutral clickable" onclick='location.href="/logout"'>
-                Log Out
-            </button>
-        </div>
-    </div>
+    <%- include('partials/user-head', {data: data}) %>
 <% } %>
 
 <!-- Change the display name of the user -->

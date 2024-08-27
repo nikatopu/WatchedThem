@@ -6,6 +6,7 @@
         <div class="text-group">
             <p>you're signed in as</p>
             <h1><%- data.displayname %></h1>
+            <a href="/logout" class="txt-subtle clickable">Log out</a>
         </div>
         <div class="user-settings">
             <img 
@@ -67,6 +68,16 @@
         font-size: 7.031lvw;
         font-style: normal;
         font-weight: 700;
+
+        margin-bottom: 3lvw;
+    }
+
+    .text-group > a {
+        text-decoration: none;
+    }
+
+    .text-group > a:hover {
+        color: var(--text-main)
     }
 
     .user-settings {
