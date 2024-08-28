@@ -5,66 +5,6 @@ body {
     margin: 0;
 }
 
-/* ------------- The Header ------------- */
-header {
-    display: flex;
-    padding: 1lvh 2lvw;
-    align-items: center;
-    align-content: center;
-    justify-content:space-evenly;
-    gap: 0vw 2.266vw;
-    align-self: stretch;
-    /* flex-wrap: wrap; */
-
-    height: 12lvh;
-
-    border-bottom: 0.125vw solid var(--border-default);
-    opacity: 0.75vw;
-    background: var(--background-default);
-}
-
-/* Alinks */
-header > a {
-    display: flex;
-    padding: 0.625vw;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 0.625vw;
-    background-color: none;
-
-    text-decoration: none;
-}
-
-header > a:hover {
-    background-color: var(--background-neutral-tertiary);
-}
-
-/* Eye icon */
-.icon > img {
-    width: 2.734vw;
-    height: 2.734vw;
-    flex-shrink: 0;
-    cursor: pointer;
-}
-
-.authed {
-    display: flex;
-    /* padding: 0.391lvw 0.469lvw; */
-    justify-content: center;
-    align-items: center;
-    gap: 0.781lvw;
-    width: 3lvw;
-    height: 3lvw;
-    border-radius: 50%;
-    overflow: hidden;
-}
-
-.authed > img {
-    width: 3lvw;
-    object-fit: fill;
-}
-
 /* ------------- The Hero------------- */
 /* 
 <!-- A hero section -->

@@ -1,16 +1,72 @@
- <div class="search-holder">
-    <form class="search-layer" action="/search" method="POST">
-        <input type="text" name="searching" class="search-text" placeholder="Search for something...">
+ <div class="search-holder" id="search-holder">
+    <form class="search-layer" action="/search" method="POST" id="search-form">
+        <input type="text" id="searching" name="searching" class="search-text" placeholder="Search for something...">
         <div class="search-trailing clickable">
             <img src="/icons/icon-search.png" id="searchForm">
         </div>
     </form>
+    <div class="suggestions hidden" id="suggestions">
+        
+    </div>
 </div>
 
 <script>
-    var form = document.getElementById("searchForm");
+    // Autocomplete the search text
+    var searchText = document.getElementById("searching");
+    var suggestions = document.getElementById("suggestions");
+    var searchHolder = document.getElementById("search-holder");
 
-    document.getElementById("your-id").addEventListener("click", function () {
+    // Add the event listener to the input, so for each update we can show the suggestions
+    searchText.addEventListener("input", async function () {
+        if (searchText.value.length > 2) {
+            console.log("Searching for " + searchText.value);
+            var result = await autocomplete(searchText.value);
+
+            // Make the suggestions div visible
+            suggestions.classList.remove("hidden");
+
+            // Add the suggestions
+            suggestions.innerHTML = "";
+            result.forEach(e => {
+                suggestions.innerHTML += '<p class="clickable">' + e.original_title + "</p>"
+            });
+
+            // Remove the bottom border radius of the search holder
+            searchHolder.style = 'border-radius: 2.188vw 2.188vw 0 0;'
+
+        } else {
+            // Make the suggestions div invisible
+            suggestions.classList.add("hidden");
+
+            // Add the bottom border radius of the search holder
+            searchHolder.style = 'border-radius: 2.188vw 2.188vw;'
+        }
+    })
+
+    // Return the API of the autocompleted string
+    async function autocomplete(str) {
+        // Create the constants of the api
+        const apiURL = "https://api.movieposterdb.com/v1/autocomplete/movies?title=";
+        const apiKey = 'Bearer <%=process.env.MOVIE_API_KEY%>';
+        const headers = new Headers();
+        headers.append('Authorization', apiKey);
+        headers.append('Accept', 'application/json');
+        const init = { method: 'GET', headers };
+
+        // Returns the data according to the given string.
+        try {
+            const result = await fetch(apiURL + str, init).then((response) => {return response.json()});
+            console.log(result.data);
+            return result.data;
+        } catch (err) {
+            return err.message;
+        }
+    }
+
+    // Search when clicked on the search icon
+    var form = document.getElementById("search-form");
+
+    document.getElementById("searchForm").addEventListener("click", function () {
         form.submit();
     });
 </script>
@@ -19,9 +75,13 @@
     /* ------------- The Search Bar ------------- */
     .search-holder {
         display: flex;
+        flex-direction: column;
+
+        position: relative;
+
         width: 51.953vw;
-        height: max-content;
-        min-width: 28.125vw;
+        height: 7lvh;
+        min-width: 320px;
         max-width: 56.25vw;
         align-items: center;
         gap: 0.313vw;
@@ -36,6 +96,7 @@
         flex-direction: row;
         padding: 0.313vw 0.469vw;
         border-radius: 2.188vw;
+        height: 100%;
         align-items: center;
         gap: 0.313vw;
         flex: 1 0 0;
@@ -72,5 +133,33 @@
         height: 1.406vw;
         flex-shrink: 0;
         cursor: pointer;
+    }
+
+    .suggestions {
+        position: absolute;
+        top: 7lvh;
+        left: 0;
+
+        height: max-content;
+
+        width: 100%;
+        min-width: 320px;
+        max-width: 56.25vw;
+
+        border-radius: 0 0 2.188vw 2.188vw;
+        opacity: 0.75vw;
+        background: var(--container-main, #ECE6F0);
+
+        overflow: hidden;
+    }
+
+    .suggestions > p {
+        width: 100%;
+        margin: 0;
+        padding: 1em;
+    }
+
+    .suggestions > p:hover {
+        background-color: var(--background-neutral-tertiary-hover);
     }
 </style>
