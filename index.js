@@ -55,6 +55,10 @@ db.connect();
 
 import userdata from "./userdata.js";
 
+// --------------------- Movie Data Functions --------------------- //
+
+import moviedata from "./moviedata.js";
+
 // --------------------- Connecting to the Routes --------------------- //
 
 // Generic GET routes
@@ -66,11 +70,14 @@ import userdata from "./userdata.js";
  * @param {string} rend The name of the EJS file to render
  * @param {func} optFunc `Optional` The function to get the needed data which then 
  * we transfer to the EJS file. The default is getAllData 
+ * @param {number} optMovie `Optional` The id of the movie we are getting. I found that this is
+ * the best way to do it so far...
  */
-async function getPath(path, rend, optFunc = userdata.getAllData) {
+async function getPath(path, rend, optFunc = userdata.getAllData, optMovie = 559744) {
     app.get(path, async (req, res) => {
         const data = await optFunc(req);
-        res.render(rend, {data: data});
+        const movieData = await moviedata.getMovieData(optMovie);
+        res.render(rend, {data: data, moviedata: movieData.data});
     })
 }
 
@@ -85,12 +92,15 @@ async function getPath(path, rend, optFunc = userdata.getAllData) {
  * @param {string} redirectPath The path to redirect the user if they are not authenticated.
  * @param {func} optFunc `Optional` The function to get the needed data which then 
  * we transfer to the EJS file. The default is getAllData 
+ * @param {number} optMovie `Optional` The id of the movie we are getting. I found that this is
+ * the best way to do it so far...
  */
-async function getPathAuth(path, rend, redirectPath, optFunc = userdata.getAllData) {
+async function getPathAuth(path, rend, redirectPath, optFunc = userdata.getAllData, optMovie = 559744) {
     app.get(path, async (req, res) => {
         if (req.isAuthenticated()) {
             const data = await optFunc(req);
-            res.render(rend, {data: data});
+            const movieData = await moviedata.getMovieData(optMovie);
+            res.render(rend, {data: data, moviedata: movieData.data});
         } else {
             res.redirect(redirectPath);
         }
@@ -101,11 +111,24 @@ async function getPathAuth(path, rend, redirectPath, optFunc = userdata.getAllDa
 getPath("/", "home.ejs");
 getPath("/login", "login.ejs");
 getPath("/register", "register.ejs");
+getPath("/review", "review.ejs");
 
 // GET routes that require authentication
 getPathAuth("/user", "user.ejs", "/login");
 getPathAuth("/user-settings", "user-settings.ejs", "/login");
 
+// --------------------- POST to get all of the movies --------------------- //
+
+app.post("/search", async (req, res) => {
+    // What are we searching for?
+    const searchFor = req.body.searching;
+
+    // Search for the given movie
+    const result = await moviedata.getByTitle(searchFor);
+    
+    // render the search results by passing the array
+    res.render("search.ejs", {data: await userdata.getAllData(req), moviedata: result.data});
+})
 
 // --------------------- POST to update information --------------------- //
 

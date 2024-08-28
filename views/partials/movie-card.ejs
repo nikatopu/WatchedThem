@@ -1,0 +1,92 @@
+<% if (locals.movie) { %>
+<!-- A movie card -->
+ <div class="movie-card clickable">
+
+    <!-- Movie poster -->
+     <% if (movie.poster !== null) { %>
+        <img src=<%- movie.poster.file_location %> alt=<% movie.original_title %>>
+     <% } else { %>
+        <img src="" alt="<% movie.original_title %>">
+     <% } %>
+
+    <!-- Movie info -->
+     <div class="movie-card-info">
+
+        <!-- The title -->
+         <h1>
+            <%- movie.original_title %>
+         </h1>
+
+        <!-- The stars -->
+         <%- include("the-stars") %>
+
+
+        <!-- The description -->
+         <p>
+            <%- movie.summary %>
+         </p>
+
+     </div>
+
+ </div>
+
+<% } %>
+
+<style>
+    /* ------------- The Big Review Card ------------- */
+    .movie-card {
+        display: flex;
+        flex-direction: row;
+        height: 70lvh;
+        padding: 1.875lvw;
+        align-items: center;
+        gap: 1.875lvw;
+        align-self: stretch;
+
+        border-radius: 0.625lvw;
+        border: 1px solid var(--border-default)
+    }
+
+    .movie-card > img {
+        height: 70lvh;
+    }
+
+    .movie-card-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 1.563lvw;
+        flex: 1 0 0;
+        align-self: stretch;
+    }
+
+    .movie-card-info > h1 {
+        color: var(--text-main);
+
+        font-size: 4.5lvw;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+
+        margin-bottom: 0;
+    }
+
+    .movie-card-info > .the-stars > img {
+        width: 3.281lvw;
+        height: 3.281lvw;
+    }
+
+    .movie-card-info > .the-stars {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .movie-card-info > p {
+        font-size: 1.8lvw;
+        font-style: normal;
+        line-height: 140%;
+    }
+</style>

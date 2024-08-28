@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<% if (locals.moviedata) { %>
+
+    <div class="search-result">
+
+        <div class="small-heading">
+            <h1>
+                Movies
+            </h1>
+            <p>
+                The movies which you searched for
+            </p>
+        </div>
+
+        <div class="card-grid">
+            
+            <% moviedata.forEach(e => { %>
+                <%- include("partials/movie-card", {movie: e}) %>
+            <% }); %>
+
+        </div>
+
+    </div>
+
+<% } %>
+
+<style>
+
+    .search-result {
+        display: flex;
+        padding: 5lvw;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3.75lvw;
+        align-self: stretch;
+    }
+
+
+    
+</style>
+
+<%- include('partials/footer') %>
+

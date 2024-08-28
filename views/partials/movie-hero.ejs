@@ -1,0 +1,76 @@
+<% if (moviedata === null) { %>
+    <div class="movie-overall">
+        <div class="poster">
+            <img src="/icons/shining-poster.png" alt="movie poster">
+        </div>
+
+        <div class="movie-info">
+            <div class="movie-title">
+                <h1>The Shining</h1>
+            </div>
+            <div class="overall-stars">
+                <%- include("the-stars") %>
+            </div>
+            <div class="movie-additional">
+                <p class="txt-subtle">The movie about shining</p>
+            </div>
+        </div>
+    </div>
+<% } else { %>
+    <div class="movie-overall">
+        <div class="poster">
+            <img src=<%- moviedata.poster.file_location %> alt="movie poster">
+        </div>
+
+        <div class="movie-info">
+            <div class="movie-title">
+                <h1><%- moviedata.original_title %></h1>
+            </div>
+            <div class="overall-stars">
+                <%- include("the-stars") %>
+            </div>
+            <div class="movie-additional">
+                <p class="txt-subtle"><%- moviedata.summary %></p>
+            </div>
+        </div>
+    </div>
+<% } %>
+
+<style>
+    .movie-overall {
+        display: flex;
+        height: 85.8lvh;
+        align-items: center;
+        align-self: stretch;
+    }
+
+    .movie-info {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+    }
+    
+    .poster {
+        height: 100%;
+    }
+
+    .poster > img {
+        height: 100%;
+        width: auto;
+    }
+
+    .movie-title > h1 {
+        font-size: 90px;
+        font-weight: 700;
+    }
+
+    .movie-additional > p {
+        font-size: 34px;
+        font-weight: 400;
+    }
+
+
+</style>

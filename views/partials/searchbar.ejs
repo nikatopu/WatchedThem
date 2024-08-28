@@ -1,11 +1,19 @@
  <div class="search-holder">
-    <div class="search-layer">
-        <input type="text" class="search-text" placeholder="Search for something...">
-        <div class="search-trailing">
-            <img src="/icons/icon-search.png">
+    <form class="search-layer" action="/search" method="POST">
+        <input type="text" name="searching" class="search-text" placeholder="Search for something...">
+        <div class="search-trailing clickable">
+            <img src="/icons/icon-search.png" id="searchForm">
         </div>
-    </div>
+    </form>
 </div>
+
+<script>
+    var form = document.getElementById("searchForm");
+
+    document.getElementById("your-id").addEventListener("click", function () {
+        form.submit();
+    });
+</script>
 
 <style>
     /* ------------- The Search Bar ------------- */
@@ -25,7 +33,9 @@
 
     .search-layer {
         display: flex;
+        flex-direction: row;
         padding: 0.313vw 0.469vw;
+        border-radius: 2.188vw;
         align-items: center;
         gap: 0.313vw;
         flex: 1 0 0;
