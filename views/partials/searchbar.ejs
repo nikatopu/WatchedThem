@@ -17,31 +17,36 @@
     var searchHolder = document.getElementById("search-holder");
 
     // Add the event listener to the input, so for each update we can show the suggestions
-    searchText.addEventListener("input", async function () {
-        if (searchText.value.length > 2) {
-            console.log("Searching for " + searchText.value);
-            var result = await autocomplete(searchText.value);
 
-            // Make the suggestions div visible
-            suggestions.classList.remove("hidden");
+    // REMOVE THE COMMENTS TO LET THIS BE
+    // THIS BURNS THE API STUFF SO PLEASE BE CAREFUL
+    // Perhaps I should build my own RestAPI
 
-            // Add the suggestions
-            suggestions.innerHTML = "";
-            result.forEach(e => {
-                suggestions.innerHTML += '<p class="clickable">' + e.original_title + "</p>"
-            });
+    // searchText.addEventListener("input", async function () {
+    //     if (searchText.value.length > 2) {
+    //         var result = await autocomplete(searchText.value);
 
-            // Remove the bottom border radius of the search holder
-            searchHolder.style = 'border-radius: 2.188vw 2.188vw 0 0;'
+    //         // Make the suggestions div visible
+    //         suggestions.classList.remove("hidden");
 
-        } else {
-            // Make the suggestions div invisible
-            suggestions.classList.add("hidden");
+    //         // Add the suggestions
+    //         suggestions.innerHTML = "";
+    //         result.forEach(e => {
+    //             let onClick = 'location.href="/movie?id='
+    //             suggestions.innerHTML += '<p class="clickable" onclick=' + onClick + e.id + '">' + e.original_title + "</p>"
+    //         });
 
-            // Add the bottom border radius of the search holder
-            searchHolder.style = 'border-radius: 2.188vw 2.188vw;'
-        }
-    })
+    //         // Remove the bottom border radius of the search holder
+    //         searchHolder.style = 'border-radius: 2.188vw 2.188vw 0 0;'
+
+    //     } else {
+    //         // Make the suggestions div invisible
+    //         suggestions.classList.add("hidden");
+
+    //         // Add the bottom border radius of the search holder
+    //         searchHolder.style = 'border-radius: 2.188vw 2.188vw;'
+    //     }
+    // })
 
     // Return the API of the autocompleted string
     async function autocomplete(str) {

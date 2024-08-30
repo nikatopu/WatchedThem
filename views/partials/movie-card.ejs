@@ -1,6 +1,7 @@
 <% if (locals.movie) { %>
 <!-- A movie card -->
- <div class="movie-card clickable">
+ <% const movieDetails = `location.href="/movie?id=${movie.id}"` %>
+ <div class="movie-card clickable" onclick=<%- movieDetails %>>
 
     <!-- Movie poster -->
      <% if (movie.poster !== null) { %>
@@ -33,7 +34,7 @@
 <% } %>
 
 <style>
-    /* ------------- The Big Review Card ------------- */
+    /* ------------- The Movie Card ------------- */
     .movie-card {
         display: flex;
         flex-direction: row;

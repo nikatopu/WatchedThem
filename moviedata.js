@@ -2,7 +2,6 @@
 import pg from "pg";
 import env from "dotenv";
 import axios from "axios";
-import { getRounds } from "bcrypt";
 
 // Start the env process
 env.config();
@@ -102,6 +101,24 @@ export async function getMovieStarRating(id) {
     return movieRating;
 }
 
+/**
+ * Takes a movie title and returns all of the reviews about it
+ * @param {string} title The title of the movie to get reviews about
+ * @returns {Promise<Array<object>>} The array of all of the reviews as objects
+ */
+export async function getMovieReviews(title) {
+    // Get the reviews from the database
+    const result = await db.query("SELECT * FROM post WHERE movie=$1;", [title.toLowerCase()]);
+    return result.rows;
+}
+
 // The object for all of these functions
-const moviedata = {getMovieData, getByTitle, getAutocompleteMovie, getMovieStarRating, getMovieStarRatingByTitle};
+const moviedata = {
+    getMovieData, 
+    getByTitle, 
+    getAutocompleteMovie, 
+    getMovieStarRating, 
+    getMovieStarRatingByTitle,
+    getMovieReviews,
+};
 export default moviedata;

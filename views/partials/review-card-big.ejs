@@ -1,40 +1,46 @@
-<!-- A big review card -->
-<div class="review-card-big clickable">
+<% if (locals.review) { %>
+    <!-- A big review card -->
+    <div class="review-card-big clickable">
 
-    <!-- The avatar and the name -->
-    <div class="review-card-big-avatar">
-        <img class="clickable" src="/icons/user-holder.png">
-        <p>Emily J. S.</p>
-    </div>
-
-    <!-- Review information -->
-    <div class="review-card-big-review">
-
-        <div class="the-stars">
-            <img src="/icons/star-full.png" alt="star full" />
-            <img src="/icons/star-full.png" alt="star full" />
-            <img src="/icons/star-full.png" alt="star full" />
-            <img src="/icons/star-empty.png" alt="star empty" />
-            <img src="/icons/star-empty.png" alt="star empty" />
+        <!-- The avatar and the name -->
+        <div class="review-card-big-avatar clickable">
+            <div class="circle-image">
+                <img src=<%- review.author.pfplink %>>
+            </div>
+            <p><%- review.author.displayname %></p>
         </div>
 
-        <!-- The review itself -->
-        <p>"This movie was amazing, without a doubt!"</p>
+        <!-- Review information -->
+        <div class="review-card-big-review">
 
+            <div class="the-stars">
+                <% for (let i = 0; i < review.post.stars; i++) { %>
+                    <img src="/icons/star-full.png" alt="star full" />
+                <% } %>
+                <% for (let i=0; i< 5-review.post.stars; i++) { %>
+                    <img src="/icons/star-empty.png" alt="star empty" />
+                <% } %>
+            </div>
+
+            <!-- The review itself -->
+            <p><%- review.post.review %></p>
+
+        </div>
+
+        <!-- Reactions on the review -->
+        <div class="review-card-big-reactions">
+            <div class="reaction">
+                <p><%- review.likes.length %></p>
+                <img class="clickable" src="/icons/like-empty.png"/>
+            </div>
+            <div class="reaction">
+                <p><%- review.comments.length %></p>
+                <img class="clickable" src="/icons/comment.png"/>
+            </div>
+        </div>
     </div>
 
-    <!-- Reactions on the review -->
-    <div class="review-card-big-reactions">
-        <div class="reaction">
-            <p>32.8k</p>
-            <img class="clickable" src="/icons/like-empty.png"/>
-        </div>
-        <div class="reaction">
-            <p>21.3k</p>
-            <img class="clickable" src="/icons/comment.png"/>
-        </div>
-    </div>
-</div>
+<% } %>
 
 <style>
     /* ------------- The Big Review Card ------------- */
@@ -66,11 +72,23 @@
         font-size: 1lvw;
     }
 
-    .review-card-big-avatar > img {
+    .circle-image { 
+        border-radius: 50%;
+        width: 6lvw;
+        height: 6lvw;
+        overflow: hidden;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circle-image > img {
         display: flex;
         width: 6lvw;
         justify-content: center;
         align-items: center;
+        object-fit: fill;
 
         margin-bottom: 0.5lvw;
     }

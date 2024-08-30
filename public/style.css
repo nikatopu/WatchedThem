@@ -160,11 +160,13 @@ body {
 
 footer {
     display: flex;
-    padding: 2.5lvw 2.5lvw 12.5lvw 2.5lvw;
+    padding: 5lvh 2.5lvw;
     align-items: flex-start;
     align-content: flex-start;
     gap: 1.25lvw;
     flex-wrap: wrap;
+
+    height: 90lvh;
 
     border-top: 0.125vw solid var(--border-default);
     opacity: 0.75vw;

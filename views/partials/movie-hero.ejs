@@ -1,4 +1,4 @@
-<% if (moviedata === null) { %>
+<% if (moviedata == null) { %>
     <div class="movie-overall">
         <div class="poster">
             <img src="/icons/shining-poster.png" alt="movie poster">
@@ -19,7 +19,9 @@
 <% } else { %>
     <div class="movie-overall">
         <div class="poster">
-            <img src=<%- moviedata.poster.file_location %> alt="movie poster">
+            <% if (moviedata.poster != null) { %>
+                <img src=<%- moviedata.poster.file_location %> alt="movie poster">
+            <% } %>
         </div>
 
         <div class="movie-info">
@@ -42,6 +44,8 @@
         height: 85.8lvh;
         align-items: center;
         align-self: stretch;
+
+        background-color: var(--background-neutral-tertiary);
     }
 
     .movie-info {
@@ -51,6 +55,8 @@
         align-items: center;
         justify-content: center;
         align-self: stretch;
+
+        text-align: center;
     }
     
     .poster {
@@ -62,14 +68,31 @@
         width: auto;
     }
 
+    .overall-stars > .the-stars > img {
+        width: 4lvw;
+    }
+
     .movie-title > h1 {
-        font-size: 90px;
+        font-size: 6lvw;
         font-weight: 700;
+
+        margin-bottom: 8lvh;
+    }
+
+    .movie-additional {
+        width: 80%;
+        height: max-content;
     }
 
     .movie-additional > p {
-        font-size: 34px;
+        font-size: 1.75lvw;
         font-weight: 400;
+
+        /* text-align: justify; */
+
+        margin: 0;
+        margin-top: 2.5lvh;
+        line-height: 140%;
     }
 
 

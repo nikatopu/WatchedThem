@@ -1,0 +1,65 @@
+<%- include("partials/header") %>
+
+<% if (locals.moviedata) { %>
+    <%- include("partials/movie-hero", {moviedata: moviedata}) %>
+
+    <% if (locals.reviews) { %>
+        <div class="review-grid">
+            <div class="small-heading">
+                <h1>
+                    Top reviews
+                </h1>
+                <p>
+                    The top reviews about <%- moviedata.original_title %>
+                </p>
+            </div>
+
+            <div class="card-grid">
+                <% const topReviews = reviews.slice(0, 2); %>
+                <% const otherReviews = reviews.slice(3); %>
+                <% topReviews.forEach(e => { %>
+                    <%- include("partials/review-card-big", {review: e}) %>
+                    
+                <% }); %>
+            </div>
+        </div>
+        <% if (otherReviews.length > 0) { %>
+            <div class="review-grid">
+                <div class="small-heading">
+                    <h1>
+                        Other reviews
+                    </h1>
+                    <p>
+                        Other reviews about <%- moviedata.original_title %>
+                    </p>
+                </div>
+
+                <div class="card-grid">
+                    <% otherReviews.forEach(e => { %>
+                        <%- include("partials/review-card-big", {review: e}) %>
+                        
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
+        
+    <% } %>
+
+    <div class="hero-big">
+        <div class="title-subtitle">
+            <h1>Watched It?</h1>
+            <p>Leave a review for <%- moviedata.original_title %></p>
+        </div>
+        <div class="btn-group">
+            <% const leaveReview = `location.href="/review?id=${moviedata.id}"` %>
+            <button class="btn btn-primary btn-fill clickable" onclick=<%- leaveReview %>>
+                Leave a review
+            </button>
+        </div>
+    </div>
+
+<% } else { %>
+
+<% } %>
+
+<%- include("partials/footer") %>

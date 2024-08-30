@@ -59,6 +59,10 @@ import userdata from "./userdata.js";
 
 import moviedata from "./moviedata.js";
 
+// --------------------- SQL Data Functions --------------------- //
+
+import SQLdata from "./SQLdata.js";
+
 // --------------------- Connecting to the Routes --------------------- //
 
 // Generic GET routes
@@ -111,11 +115,51 @@ async function getPathAuth(path, rend, redirectPath, optFunc = userdata.getAllDa
 getPath("/", "home.ejs");
 getPath("/login", "login.ejs");
 getPath("/register", "register.ejs");
-getPath("/review", "review.ejs");
 
 // GET routes that require authentication
 getPathAuth("/user", "user.ejs", "/login");
 getPathAuth("/user-settings", "user-settings.ejs", "/login");
+
+// --------------------- GET path of a review --------------------- //
+app.get("/review", async (req, res) => {
+    const data = await userdata.getAllData(req);
+    let movieData = await moviedata.getMovieData(req.query.id);
+    if (movieData.data === undefined) {
+        movieData = {data: {
+            id: 1,
+            original_title: "The Shining",
+            summary: "A horror and a thriller movie about the shining",
+            poster: {
+                file_location:"/icons/shining-poster.png"
+                },
+            }}
+    }
+
+    const movieReviews = await SQLdata.getMovieReviews(movieData.data.original_title);
+
+    res.render("review.ejs", {data: data, moviedata: movieData.data});
+})
+
+// --------------------- GET path of a movie --------------------- //
+app.get("/movie", async (req, res) => {
+    const data = await userdata.getAllData(req);
+    let movieData = await moviedata.getMovieData(req.query.id);
+    if (movieData.data === undefined) {
+        movieData = {data: {
+            id: 1,
+            original_title: "The Shining",
+            summary: "A horror and a thriller movie about the shining",
+            poster: {
+                file_location:"/icons/shining-poster.png"
+                },
+            }}
+    }
+
+    const movieReviews = await SQLdata.getMovieReviews(movieData.data.original_title);
+
+    res.render("movie.ejs", {data: data, moviedata: movieData.data, reviews: movieReviews});
+})
+
 
 // --------------------- POST to get all of the movies --------------------- //
 
