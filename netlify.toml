@@ -1,8 +1,4 @@
 [functions]
+  external_node_modules = ["axios", "bcrypt", "body-parser", "dotenv", "ejs", "express", "express-session", "passport", "passport-local", "pg", "serverless-http"]
   node_bundler = "esbuild"
   included_files = ["views/*", "public/*"]
-[[redirects]]
-  force = true
-  from = "/*"
-  status = 200
-  to = "/netlify/functions/index/:splat"
