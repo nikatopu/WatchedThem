@@ -15,6 +15,8 @@ import env from "dotenv";
 const app = express();
 const port = 3000;
 
+app.set('view engine', 'ejs');
+
 // Salt rounds for Bcrypt
 const saltRounds = 12;
 
