@@ -53,7 +53,7 @@
             <a class="clickable" href="https://www.figma.com/proto/ila11OOtkfCdVOVlhUftQh/WathcedThem?node-id=2-549&t=ZFKhetwKMpvMwFss-1" target="_blank" rel="noopener noreferrer">Design</a>
             <a class="clickable" href="https://github.com/nikatopu/" target="_blank" rel="noopener noreferrer">Projects</a>
         
-        <% if (data == null) {%>
+        <% if (data.currentUser == null) {%>
         
         <!-- Register/Sign in -->
          <div class="btn-group">
@@ -64,7 +64,7 @@
          <% } else { %>
 
             <div class="authed">
-                <img class="clickable" src=<%- data.pfplink %> onclick='location.href="/user"'>
+                <img class="clickable" src=<%- data.currentUser.pfplink %> onclick='location.href="/user"'>
             </div>
 
         <% } %>

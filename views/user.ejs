@@ -1,42 +1,46 @@
 <%- include('partials/header') %>
 
-<% if (locals.data) { %>
-    <%- include('partials/user-head', {data: data}) %>
+<% if (locals.data.currentUser) { %>
+    <%- include('partials/user-head', {data: data.currentUser}) %>
 
 <div class="section-movie-list">
     <div class="small-heading">
         <h1>Movies you've reviewed</h1>
     </div>
 
-    <div class="movie-list">
+        <% if (data.currentUser.posts.length > 0) { %>
+            <div class="movie-list">
+            <% data.currentUser.posts.forEach(e => { %>
 
-        <% if (locals.data) { %>
-            <% if (data.posts.length > 0) { %>
-
-                <% data.posts.forEach(e => { %>
-
-                    <div class="movie">
-                        <%- include('partials/the-stars', {stars: e.stars}) %>
-                        <div class="poster">
+                <div class="movie">
+                    <%- include('partials/the-stars', {stars: e.stars}) %>
+                    <div class="poster">
 <!-- Getting poster images are connected to the APIs, so its a problem for the future me -->
-                            <img 
-                            src="/icons/shining-poster.png" 
-                            alt="movie poster" 
-                            class="clickable"/>
-                        </div>
+                        <img 
+                        src="/icons/shining-poster.png" 
+                        alt="movie poster" 
+                        class="clickable"/>
                     </div>
+                </div>
 
-                <% }); %>
-
-            <% } else { %>
-
-            <% } %>
+            <% }); %>
+            </div>
+        <% } else { %>
+            <div class="hero">
+                <div class="title-subtitle">
+                    <h1>No reviews</h1>
+                    <p>Want to leave a review?</p>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-fill clickable" onclick='location.href="/review"'>
+                        New review
+                    </button>
+                </div>
+            </div>
         <% } %>
 
-    </div>
-
-    <% if (locals.data) { %>
-        <% if (data.favs.length > 5) { %>
+    <% if (locals.data.currentUser) { %>
+        <% if (data.currentUser.posts.length > 5) { %>
             <%- include('partials/pagination') %>
         <% } %>
     <% } %>
@@ -48,21 +52,31 @@
     </div>
 
     <div class="card-grid">
-        <% if (locals.data) { %>
-            <% if (data.posts.length > 0) { %>
-                <% data.posts.forEach(e => { %>
+        <% if (locals.data.currentUser) { %>
+            <% if (data.currentUser.posts.length > 0) { %>
+                <% data.currentUser.posts.forEach(e => { %>
 
                     <%- include('partials/user-review', {review: e}) %>
 
                 <% }); %>
             <% } else { %>
-
+                <div class="hero-white">
+                    <div class="title-subtitle">
+                        <h1>No reviews</h1>
+                        <p>Want to leave a review?</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-fill clickable" onclick='location.href="/review"'>
+                            New review
+                        </button>
+                    </div>
+                </div>
             <% } %>
         <% } %>
 
     </div>
-    <% if (locals.data) { %>
-        <% if (data.posts.length > 3) { %>
+    <% if (locals.data.currentUser) { %>
+        <% if (data.currentUser.posts.length > 3) { %>
             <%- include('partials/pagination') %>
         <% } %>
     <% } %>
@@ -75,21 +89,31 @@
     </div>
 
     <div class="card-grid">
-        <% if (locals.data) { %>
-            <% if (data.favs.length > 0) { %>
-                <% data.favs.forEach(e => { %>
+        <% if (locals.data.currentUser) { %>
+            <% if (data.currentUser.favs.length > 0) { %>
+                <% data.currentUser.favs.forEach(e => { %>
 
                     <%- include('partials/user-review', {review: e}) %>
 
                 <% }); %>
             <% } else { %>
-
+                <div class="hero">
+                    <div class="title-subtitle">
+                        <h1>No favourites</h1>
+                        <p>Wanna check out reviews?</p>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary btn-fill clickable" onclick='location.href="/reviews"'>
+                            Top Reviews
+                        </button>
+                    </div>
+                </div>
             <% } %>
         <% } %>
     
     </div>
-    <% if (locals.data) { %>
-        <% if (data.favs.length > 3) { %>
+    <% if (locals.data.currentUser) { %>
+        <% if (data.currentUser.favs.length > 3) { %>
             <%- include('partials/pagination') %>
         <% } %>
     <% } %>

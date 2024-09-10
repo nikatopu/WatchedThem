@@ -51,7 +51,7 @@
             <p>Leave a review for <%- moviedata.original_title %></p>
         </div>
         <div class="btn-group">
-            <% const leaveReview = `location.href="/review?id=${moviedata.id}"` %>
+            <% const leaveReview = `location.href="/watchedit?id=${moviedata.id}"` %>
             <button class="btn btn-primary btn-fill clickable" onclick=<%- leaveReview %>>
                 Leave a review
             </button>

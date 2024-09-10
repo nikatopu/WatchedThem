@@ -42,6 +42,9 @@ async function getData(str) {
  * @returns {object} 
  */
 export async function getMovieData(id) {
+    if (id===null) {
+        return null;
+    }
     return await getData("/movie?id=" + id);
 }
 

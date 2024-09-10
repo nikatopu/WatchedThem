@@ -6,10 +6,10 @@
         <p>Leave a review about your favourite movies</p>
     </div>
     <div class="btn-group">
-        <button class="btn btn-neutral clickable">
+        <button class="btn btn-neutral clickable" onclick='location.href="/review"'>
             Reviews
         </button>
-        <button class="btn btn-primary clickable">
+        <button class="btn btn-primary clickable" onclick='location.href="/watchedit"'>
             New Post
         </button>
     </div>
@@ -27,13 +27,20 @@
     </div>
 
     <div class="card-grid">
-        <%- include("partials/review-card") %>
-        <%- include("partials/review-card") %>
-        <%- include("partials/review-card") %>
-        <%- include("partials/review-card") %>
-        <%- include("partials/review-card") %>
-        <%- include("partials/review-card") %>
+        <% if (locals.allreviews) { %>
+            <% const topReviews = allreviews.slice(0, 5); %>
+            <% topReviews.forEach(review => { %>
+                <%- include("partials/review-card", {review: review}) %>
+            <% }); %>
 
+        <% } else { %>
+            <%- include("partials/review-card") %>
+            <%- include("partials/review-card") %>
+            <%- include("partials/review-card") %>
+            <%- include("partials/review-card") %>
+            <%- include("partials/review-card") %>
+            <%- include("partials/review-card") %>
+        <% } %>
     </div>
 </div>
 

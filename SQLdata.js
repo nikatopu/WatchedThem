@@ -1,6 +1,7 @@
 // Import all dependencies
 import pg from "pg";
 import env from "dotenv";
+import moviedata from "./moviedata.js";
 
 // Start the env process
 env.config();
@@ -16,6 +17,17 @@ const db = new pg.Client({
 db.connect();
 
 /**
+ * Takes in the array of post objects and sorts them 
+ * by the descending order of likes and comments
+ * @param {Array<object>} posts The unsorted array of posts
+ * @returns {Promise<Array<object>>} The sorted array of posts
+ */
+async function sortPosts(posts) {
+    const data = await Promise.all(posts.map(e => getPostData(e.id)).sort((a, b) => (a.likeCount + a.commentCount) - (b.likeCount + b.commentCount)));
+    return data;
+}
+
+/**
  * Takes a movie title and returns all of the reviews about it
  * @param {string} title The title of the movie to get reviews about
  * @returns {Promise<Array<object>>} The array of all of the reviews as objects
@@ -26,8 +38,21 @@ export async function getMovieReviews(title) {
     if (result.rows.length <= 0) {
         return null;
     }
-    const data = await Promise.all(result.rows.map(e => getPostData(e.id)).sort((a, b) => (a.likeCount + a.commentCount) - (b.likeCount + b.commentCount)));
-    return data;
+
+    return await sortPosts(result.rows);
+}
+
+/**
+ * Returns all of the posts in a descending order
+ * @returns {Promise<Array<object>>}
+ */
+export async function getAllPosts() {
+    const posts = await db.query("SELECT * FROM post");
+    if (posts.rows.length <= 0) {
+        return [];
+    }
+
+    return await sortPosts(posts.rows);
 }
 
 /**
@@ -93,6 +118,10 @@ export async function getPostAuthor(id) {
  * @returns {Promise<object>} `object` The object of the post data
  */
 export async function getPostData(id) {
+    if (id === undefined) {
+        return null;
+    }
+
     const the_post = await getPost(id);
     if (the_post === null) {
         console.log("No post found");
@@ -123,6 +152,7 @@ export async function getPostData(id) {
 
 const SQLdata = {
     getMovieReviews,
+    getAllPosts,
     getPost,
     getPostComments,
     getPostLikes,

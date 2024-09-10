@@ -21,7 +21,7 @@ db.connect();
  * Gets basic data about the user, like the email, the pfp link and the display name.
  * 
  * @param {number} userID The id of the user we want to get information about.
- * @returns {object} An object containing {email, pfplink, displayname}.
+ * @returns {Promise<object>} An object containing {email, pfplink, displayname}.
  */
 export async function getUserData(userID) {
     const result = await db.query(
@@ -40,7 +40,7 @@ export async function getUserData(userID) {
  * Gets all of the posts created by the user in one array.
  * 
  * @param {number} userID The id of the user we want to get information about.
- * @returns {Array<object>} An array of objects, each containing {id, movie, stars, review}.
+ * @returns {Promise<Array<object>>} An array of objects, each containing {id, movie, stars, review}.
  */
 export async function getUserPosts(userID) {
     const result = await db.query(
@@ -59,7 +59,7 @@ export async function getUserPosts(userID) {
  * Gets all of the posts favourited by the user in one array.
  * 
  * @param {number} userID The id of the user we want to get information about.
- * @returns {Array<object>} An array of objects, each containing {id, movie, stars, review}.
+ * @returns {Promise<Array<object>>} An array of objects, each containing {id, movie, stars, review}.
  */
 export async function getUserFavourites(userID) {
     // Get all of the user's favourite post ids
@@ -91,10 +91,50 @@ export async function getUserFavourites(userID) {
 
 // Check if verified and if yes then return data
 /**
- * If the user is authenticated, this returns all of 
+ * This returns all of 
  * the data of that user as one simple object.
  * 
- * @param {*} req The request of the GET (or any other) method.
+ * @param {number} id The number of the user id
+ * @returns {object} An object containing following information:
+ * 
+ * email: `string`,
+ * pfplink: `string`,
+ * displayname: `string`,
+ * posts: `array`,
+ * favs: `array`,
+ * 
+ * each of posts and favs contains: 
+ * id of `number`, 
+ * movie of `string`, 
+ * stars of `number`, 
+ * review of `string` 
+ */
+export async function getAllDataById(id) {
+    // If the request is undefined, return null
+    if (id === undefined || id <= 0) {
+        return null;
+    }
+
+    // If user is authenticated, return data as a single object
+    const userData = await getUserData(id);
+    const userPosts = await getUserPosts(id);
+    const userFavs = await getUserFavourites(id);
+
+    const oneBigObject = {
+        ...userData,
+        posts: userPosts,
+        favs: userFavs
+    };
+
+    return oneBigObject;
+}
+
+// Check if verified and if yes then return data
+/**
+ * This returns all of 
+ * the data of that user as one simple object.
+ * 
+ * @param {Request} req The request of the GET (or any other) method.
  * @returns {object} An object containing following information:
  * 
  * email: `string`,
@@ -110,24 +150,15 @@ export async function getUserFavourites(userID) {
  * review of `string` 
  */
 export async function getAllData(req) {
-    if (req.isAuthenticated()) {
-        // If user is authenticated, return data as a single object
-        const userData = await getUserData(req.user.id);
-        const userPosts = await getUserPosts(req.user.id);
-        const userFavs = await getUserFavourites(req.user.id);
-
-        const oneBigObject = {
-            ...userData,
-            posts: userPosts,
-            favs: userFavs
-        };
-
-        return oneBigObject;
+    // If the request is undefined, return null
+    if (req.user === undefined) {
+        return null;
     }
 
-    return null;
+    // Get the data
+    return await getAllDataById(req.user.id);
 }
 
-const userdata = {getUserData, getUserFavourites, getUserPosts, getAllData}
+const userdata = {getUserData, getUserFavourites, getUserPosts, getAllData, getAllDataById}
 
 export default userdata;

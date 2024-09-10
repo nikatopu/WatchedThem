@@ -27,9 +27,10 @@ body {
     </div>
 </div>
 */
-.hero, .hero-big {
+.hero, .hero-big, .hero-white {
     display: flex;
     height: 85.8lvh;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -41,6 +42,10 @@ body {
 
 .hero-big {
     height: 100lvh;
+}
+
+.hero-white {
+    background: var(--background-default);
 }
 
 .title-subtitle {

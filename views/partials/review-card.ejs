@@ -1,36 +1,82 @@
-<!-- A standard review card -->
-<div class="review-card clickable">
+<% if (locals.review) { %>
+    <%- review.movie %>
+    <!-- A standard review card -->
+    <div class="review-card clickable">
 
-    <!-- Image of a movie poster -->
-    <img src="/icons/shining-poster.png" alt="movie-poster" />
+        <% if (review.post.posterlink !== null) { %>
+        <!-- Image of a movie poster -->
+            <img src=<%- review.post.posterlink %> alt="movie-poster" />
+        <% } else { %>
+            <img src="/icons/shining-poster.png" alt="movie-poster" />
+        <% } %>
 
-    <!-- Everything else -->
-    <div class="review-frame">
+        <!-- Everything else -->
+        <div class="review-frame">
 
-        <div class="review-frame-title">
-            The Movie Title
-        </div>
+            <div class="review-frame-title">
+                <%- review.post.movie %>
+            </div>
 
-        <div class="review-frame-bottom">
+            <div class="review-frame-bottom">
 
-            <!-- User pfp -->
-            <img src="/icons/user-holder.png" alt="user" />
+                <!-- User pfp -->
+                 <div class="icon">
+                    <img src=<%- review.author.pfplink %> alt="user" />
+                 </div>
 
-            <div class="review-frame-info">
-                <div class="the-stars">
-                    <img src="/icons/star-full.png" alt="star full" />
-                    <img src="/icons/star-full.png" alt="star full" />
-                    <img src="/icons/star-full.png" alt="star full" />
-                    <img src="/icons/star-empty.png" alt="star empty" />
-                    <img src="/icons/star-empty.png" alt="star empty" />
+                <div class="review-frame-info">
+                    <div class="the-stars">
+                        <% for (let i = 0; i < review.post.stars; i++) { %>
+                            <img src="/icons/star-full.png" alt="star full" />
+                        <% } %>
+                        <% for (let i=0; i< 5-review.post.stars; i++) { %>
+                            <img src="/icons/star-empty.png" alt="star empty" />
+                        <% } %>
+                    </div>
+
+                    <!-- User's name -->
+                    <%- review.author.displayname %>
                 </div>
-
-                <!-- User's name -->
-                Emily J. S.
             </div>
         </div>
     </div>
-</div>
+<% } else { %>
+    <!-- A standard review card -->
+    <div class="review-card clickable">
+
+        <!-- Image of a movie poster -->
+        <img src="/icons/shining-poster.png" alt="movie-poster" />
+
+        <!-- Everything else -->
+        <div class="review-frame">
+
+            <div class="review-frame-title">
+                The Movie Title
+            </div>
+
+            <div class="review-frame-bottom">
+
+                <!-- User pfp -->
+                 <div class="icon">
+                    <img src="/icons/user-holder.png" alt="user" />
+                 </div>
+
+                <div class="review-frame-info">
+                    <div class="the-stars">
+                        <img src="/icons/star-full.png" alt="star full" />
+                        <img src="/icons/star-full.png" alt="star full" />
+                        <img src="/icons/star-full.png" alt="star full" />
+                        <img src="/icons/star-empty.png" alt="star empty" />
+                        <img src="/icons/star-empty.png" alt="star empty" />
+                    </div>
+
+                    <!-- User's name -->
+                    Emily J. S.
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
 
 
 
@@ -86,13 +132,21 @@
         gap: 0.625vw;
     }
 
-    .review-frame-bottom > img {
+    .review-frame-bottom > .icon {
         display: flex;
         width: 3.125vw;
         height: 3.125vw;
         justify-content: center;
         align-items: center;
         flex-shrink: 0;
+
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .icon > img {
+        width: 3.125vw;
+        height: auto;
     }
 
     .review-frame-info {

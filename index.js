@@ -65,100 +65,86 @@ import SQLdata from "./SQLdata.js";
 
 // --------------------- Connecting to the Routes --------------------- //
 
-// Generic GET routes
-/**
- * Creates a GET route for the given path and renders the corresponding
- * EJS file with the data.
- * 
- * @param {string} path The path to create a GET path to
- * @param {string} rend The name of the EJS file to render
- * @param {func} optFunc `Optional` The function to get the needed data which then 
- * we transfer to the EJS file. The default is getAllData 
- * @param {number} optMovie `Optional` The id of the movie we are getting. I found that this is
- * the best way to do it so far...
- */
-async function getPath(path, rend, optFunc = userdata.getAllData, optMovie = 559744) {
-    app.get(path, async (req, res) => {
-        const data = await optFunc(req);
-        const movieData = await moviedata.getMovieData(optMovie);
-        res.render(rend, {data: data, moviedata: movieData.data});
-    })
+// Replacemant data for the movies
+const movieReplacement = {
+    data: {
+        id: 1,
+        original_title: "The Shining",
+        summary: "A horror and a thriller movie about the shining",
+        poster: {
+        file_location:"/icons/shining-poster.png"
+        },
+    }
 }
 
+/**
+ * Takes the request and returns one object of all of the needed data
+ * @param {Request} req The request
+ * @returns {object}
+ */
+async function getRequestData(req) {
+    // Get the data according to the query
+    const currentUser = await userdata.getAllData(req);
+    const queryUser = await userdata.getAllDataById(req.query.userid);
+    let movieData = await moviedata.getMovieData(req.query.movieid);
+    if (movieData.data === undefined) {
+        movieData = movieReplacement;
+    }
+    const queryReview = await SQLdata.getPostData(req.query.postid);
+    const allReviews = await SQLdata.getAllPosts();
+
+    // Construct a new data object with all of the above data
+    const data = {
+        currentUser: currentUser,
+        queryUser: queryUser,
+        queryReview: queryReview,
+        movieData: movieData,
+        allReviews: allReviews,
+    }
+
+    // Return the data
+    return data;
+}
 
 /**
- * Creates a GET route for the given path and renders the corresponding
- * EJS file with the data. The path is only accessed if the user is authenticated,
- * otherwise, it redirects to another given path.
- * 
- * @param {string} path The path to create a GET path to.
- * @param {string} rend The name of the EJS file to render.
- * @param {string} redirectPath The path to redirect the user if they are not authenticated.
- * @param {func} optFunc `Optional` The function to get the needed data which then 
- * we transfer to the EJS file. The default is getAllData 
- * @param {number} optMovie `Optional` The id of the movie we are getting. I found that this is
- * the best way to do it so far...
+ *  Takes the word of the route and the ejs file (which, obviously, should match) and renders it.
+ *  The optional paramters are if the autherization is needed for this route. If it is,
+ *  then the user is redirected to the other given route.
+ * @param {string} word The name of the ejs file and the route.
+ * @param {boolean} authNeeded `Optional` Is authorization needed? Default is `false`
+ * @param {string} redirectRoute `Optional` Where do we redirect? Default is `/login`
  */
-async function getPathAuth(path, rend, redirectPath, optFunc = userdata.getAllData, optMovie = 559744) {
+async function getRoute(word, authNeeded = false, redirectRoute = "/login") {
+    // Split the word into the path and the render strings
+    const path = (word !== "home") ? `/${word}` : `/`;
+    const rend = `${word}.ejs`
+
+    // Get the route
     app.get(path, async (req, res) => {
-        if (req.isAuthenticated()) {
-            const data = await optFunc(req);
-            const movieData = await moviedata.getMovieData(optMovie);
-            res.render(rend, {data: data, moviedata: movieData.data});
-        } else {
-            res.redirect(redirectPath);
+        // If auth needed, check if the user is not authenticated and redirect
+        if (authNeeded && !req.isAuthenticated()) {
+            res.redirect(redirectRoute);
         }
+
+        // Get the data from the request
+        const data = await getRequestData(req);
+
+        // Now render
+        res.render(rend, {data: data});
     })
 }
 
 // GET routes
-getPath("/", "home.ejs");
-getPath("/login", "login.ejs");
-getPath("/register", "register.ejs");
+getRoute("home");
+getRoute("login");
+getRoute("register");
+getRoute("watchedit");
+getRoute("review");
+getRoute("movie");
 
 // GET routes that require authentication
-getPathAuth("/user", "user.ejs", "/login");
-getPathAuth("/user-settings", "user-settings.ejs", "/login");
-
-// --------------------- GET path of a review --------------------- //
-app.get("/review", async (req, res) => {
-    const data = await userdata.getAllData(req);
-    let movieData = await moviedata.getMovieData(req.query.id);
-    if (movieData.data === undefined) {
-        movieData = {data: {
-            id: 1,
-            original_title: "The Shining",
-            summary: "A horror and a thriller movie about the shining",
-            poster: {
-                file_location:"/icons/shining-poster.png"
-                },
-            }}
-    }
-
-    const movieReviews = await SQLdata.getMovieReviews(movieData.data.original_title);
-
-    res.render("review.ejs", {data: data, moviedata: movieData.data});
-})
-
-// --------------------- GET path of a movie --------------------- //
-app.get("/movie", async (req, res) => {
-    const data = await userdata.getAllData(req);
-    let movieData = await moviedata.getMovieData(req.query.id);
-    if (movieData.data === undefined) {
-        movieData = {data: {
-            id: 1,
-            original_title: "The Shining",
-            summary: "A horror and a thriller movie about the shining",
-            poster: {
-                file_location:"/icons/shining-poster.png"
-                },
-            }}
-    }
-
-    const movieReviews = await SQLdata.getMovieReviews(movieData.data.original_title);
-
-    res.render("movie.ejs", {data: data, moviedata: movieData.data, reviews: movieReviews});
-})
+getRoute("user", true);
+getRoute("user-settings", true);
 
 
 // --------------------- POST to get all of the movies --------------------- //
