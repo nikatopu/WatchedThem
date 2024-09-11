@@ -142,6 +142,9 @@ async function getRoute(word, authNeeded = false, redirectRoute = "/login") {
 }
 
 // GET routes
+router.get("/", (req, res) => {
+    res.render("home.ejs");
+})
 getRoute("home");
 getRoute("login");
 getRoute("register");
